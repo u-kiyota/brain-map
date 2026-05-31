@@ -1,0 +1,30 @@
+# 匿名化マッピングは実名を含むため、共有リポジトリでは除外
+# 個人 private repo で他デバイス同期したい場合は、この行をコメントアウト
+_anonymization.yaml
+_manifest.yaml
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# 一時ファイル
+*.tmp
+*.bak
+*~
+skills/*.zip
+skills/**/*.zip
+
+# FUSE マウントが開いているファイルの削除/置換時に作る一時隠しファイル
+.fuse_hidden*

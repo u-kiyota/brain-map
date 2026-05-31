@@ -1,0 +1,107 @@
+# 重要度（サリエンス）メタ
+# AI の知識ベース本体ではない管理ファイル。出力カテゴリファイルにはスコア・回数を書かず、重みは節構造と並び順で表す。
+# 本ファイルは頻度・情報源・最終観測を保持し、更新時の昇格／降格判断に使う。
+
+meta:
+  updated_at: 2026-05-31
+  method: reorganize  # 新規フェッチなし。tier は本文の強調・反復・複数情報源での出現から推定
+  signals: [recurrence, intensity, consistency]  # 頻度・強度・一貫性
+  tiers: [core, supporting, peripheral]
+  note: >
+    今回は初の重要度再格付け。既存カテゴリ（11ファイル）を「コア」節→「補助的なパターン」節に再構成し、
+    周辺観察を _archive.md へ退避した。recurrence/intensity/consistency は high/medium/low の定性値で記録。
+    厳密な出現回数は未フェッチのため未確定（次回更新時にソース横断で加算していく）。
+
+# ── 核（コア）: 高頻度・強い強度・一貫。本人を最も特徴づける ──
+core:
+  work-philosophy:
+    - {title: "愚直な積み重ね・めんどくさいことを丁寧に（真理）", recurrence: high, intensity: high, consistency: high, sources: [notion-poem, slack, review-sheets]}
+    - {title: "報連相は早ければ早いほど（最大の失敗＝終わらないと事前に言わない）", recurrence: high, intensity: high, consistency: high, sources: [notion-poem, slack, review-sheets]}
+    - {title: "仕組みで解決（意識・気をつけるは却下）", recurrence: high, intensity: high, consistency: high, sources: [slack, review-sheets, meetings]}
+    - {title: "速度>量>品質", recurrence: high, intensity: medium, consistency: high, sources: [notion-poem, slack]}
+    - {title: "PDCA回路／ベーススキル=穴の空いたバケツ", recurrence: high, intensity: high, consistency: high, sources: [notion-poem, review-sheets]}
+    - {title: "2つの70%", recurrence: high, intensity: medium, consistency: high, sources: [notion-poem]}
+    - {title: "結局は他者評価・相手主体", recurrence: medium, intensity: medium, consistency: high, sources: [notion-poem]}
+    - {title: "準備が9割・脳内シミュレーション", recurrence: medium, intensity: high, consistency: high, sources: [notion-poem]}
+    - {title: "主体性とセルフレビュー", recurrence: high, intensity: medium, consistency: high, sources: [notion-poem, slack, review-sheets]}
+  communication-style:
+    - {title: "相手主体", recurrence: high, intensity: medium, consistency: high, sources: [notion-poem, slack]}
+    - {title: "質問に質問で返さない", recurrence: medium, intensity: high, consistency: high, sources: [notion-poem, slack]}
+    - {title: "解釈ズレを構造で切り分ける（目的と手段）", recurrence: high, intensity: high, consistency: high, sources: [slack, meetings, review-sheets]}
+    - {title: "理由を必ず添える", recurrence: high, intensity: medium, consistency: high, sources: [slack]}
+    - {title: "強い指摘ほど前置きで和らげる（重大度は言い回しに表れる）", recurrence: high, intensity: high, consistency: high, sources: [slack, review-sheets]}
+    - {title: "受け取り方の問題を指摘（最頻出のアンチパターン観察）", recurrence: high, intensity: high, consistency: high, sources: [slack, review-sheets, obsidian]}
+  feedback-style:
+    - {title: "褒めてから改善に入る", recurrence: high, intensity: medium, consistency: high, sources: [review-sheets, meetings]}
+    - {title: "前回FBとの比較を必ず入れる", recurrence: high, intensity: medium, consistency: high, sources: [review-sheets]}
+    - {title: "気をつけるを許さず仕組み化・具体アクション", recurrence: high, intensity: high, consistency: high, sources: [review-sheets]}
+    - {title: "抽象↔具体の変換を求める", recurrence: high, intensity: high, consistency: high, sources: [review-sheets, slack]}
+    - {title: "目標の測定基準（SMART／手段でなく結果）", recurrence: high, intensity: high, consistency: high, sources: [review-sheets]}
+    - {title: "継続課題は前回も同じ指摘と明示", recurrence: medium, intensity: high, consistency: high, sources: [review-sheets]}
+    - {title: "定着しないのは自分の説明不足と引き受ける", recurrence: medium, intensity: medium, consistency: high, sources: [meetings]}
+  decision-making:
+    - {title: "メリデメで考える（感情で動かない）", recurrence: high, intensity: high, consistency: high, sources: [notion-poem, meetings]}
+    - {title: "常に自分を疑う", recurrence: high, intensity: high, consistency: high, sources: [notion-poem, review-sheets]}
+    - {title: "判断の優先順位（長期信頼>仕組み化>成長機会>組織>顧客）", recurrence: medium, intensity: medium, consistency: high, sources: [inferred]}
+    - {title: "定量閾値を実害に翻訳／証拠なき推測で結論しない", recurrence: medium, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "属人化を排除（誰でも回る形）", recurrence: high, intensity: high, consistency: high, sources: [slack, meetings]}
+  project-management:
+    - {title: "期限は守るもの（報連相込み）", recurrence: high, intensity: high, consistency: high, sources: [slack, review-sheets]}
+    - {title: "リーダーの仕事は全体把握と次の一手、作業は二の次", recurrence: high, intensity: high, consistency: high, sources: [review-sheets]}
+    - {title: "完了予定日で語らせる／できるベース進行を戒める", recurrence: high, intensity: high, consistency: high, sources: [slack, meetings]}
+    - {title: "抜け漏れ＝最大のリスク", recurrence: high, intensity: high, consistency: high, sources: [slack]}
+    - {title: "課題→解決策の順", recurrence: high, intensity: high, consistency: high, sources: [slack, meetings]}
+    - {title: "権限委譲・タスク起票の主体化", recurrence: high, intensity: medium, consistency: high, sources: [slack, review-sheets]}
+  code-review:
+    - {title: "第一目的は仕様充足", recurrence: high, intensity: high, consistency: high, sources: [github, slack]}
+    - {title: "差分の外まで横串で見る", recurrence: high, intensity: high, consistency: high, sources: [github]}
+    - {title: "1行ずつ読む（目で追った気が最大の敵）", recurrence: high, intensity: high, consistency: high, sources: [github, slack]}
+    - {title: "一度の指摘を二度させない（再発防止）", recurrence: high, intensity: high, consistency: high, sources: [github, slack]}
+    - {title: "指摘には必ず返信させる", recurrence: high, intensity: medium, consistency: high, sources: [github]}
+    - {title: "横串で修正", recurrence: high, intensity: high, consistency: high, sources: [github]}
+    - {title: "層構造厳守（controllerにロジック載せない）", recurrence: high, intensity: high, consistency: high, sources: [github, slack]}
+    - {title: "不要コード削除（最頻出指摘）", recurrence: high, intensity: medium, consistency: high, sources: [github]}
+    - {title: "main2回取り込み／PRは小さく／本番に気軽に触らない", recurrence: high, intensity: high, consistency: high, sources: [github, slack]}
+  requirements-and-design:
+    - {title: "大枠→詳細（要件前に実装詳細へ踏み込ませない）", recurrence: high, intensity: high, consistency: high, sources: [slack]}
+    - {title: "読み手で受け取りが変わらない具体性（曖昧語排除）", recurrence: high, intensity: high, consistency: high, sources: [slack]}
+    - {title: "要望を鵜呑みにせず課題に立ち戻る", recurrence: high, intensity: high, consistency: high, sources: [slack]}
+    - {title: "網羅はダブル/トリプルチェック経路で", recurrence: medium, intensity: high, consistency: high, sources: [slack]}
+    - {title: "MVC・責務分離", recurrence: high, intensity: high, consistency: high, sources: [slack]}
+    - {title: "業務用語を優先", recurrence: medium, intensity: high, consistency: high, sources: [slack]}
+    - {title: "スコープは実施/検討に二分・拡大に慎重", recurrence: high, intensity: medium, consistency: high, sources: [slack]}
+    - {title: "WBSに集約・レビュー会を仕組み化", recurrence: high, intensity: high, consistency: high, sources: [slack]}
+    - {title: "要件定義書と納品物の不一致を詰める", recurrence: medium, intensity: high, consistency: high, sources: [slack]}
+  people-development:
+    - {title: "ベーススキルを最初に・漏らさず・確実に", recurrence: high, intensity: high, consistency: high, sources: [review-sheets, meetings]}
+    - {title: "結局は課題解決能力が全て", recurrence: high, intensity: high, consistency: high, sources: [review-sheets]}
+    - {title: "弱みはマイナスからゼロに、その上で強み", recurrence: medium, intensity: high, consistency: high, sources: [review-sheets, meetings]}
+    - {title: "メンバーが抜けても回る体制", recurrence: high, intensity: high, consistency: high, sources: [review-sheets, slack]}
+    - {title: "リーダーは自分が全部やらない（委任）", recurrence: high, intensity: medium, consistency: high, sources: [meetings, review-sheets]}
+    - {title: "思考の癖でタイプ分類し接し方を変える", recurrence: high, intensity: medium, consistency: high, sources: [obsidian, review-sheets]}
+    - {title: "主体性は外から生まれない", recurrence: medium, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "育成の仕組み化に比重を移す（脱・属人化）", recurrence: high, intensity: medium, consistency: high, sources: [meetings, obsidian]}
+  evaluation-and-growth:
+    - {title: "振り返り(月次)と評価(年次)は別物", recurrence: high, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "評価は結果ベース、努力は反映しない", recurrence: medium, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "PDCA定着が根本課題", recurrence: high, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "月1振り返りの意図＝早期の方向修正", recurrence: medium, intensity: high, consistency: high, sources: [meetings]}
+  life-philosophy:
+    - {title: "メタ認知を能力の中核に", recurrence: high, intensity: high, consistency: high, sources: [notion-poem, meetings]}
+    - {title: "すべての世界は自分が作り出している", recurrence: high, intensity: high, consistency: high, sources: [notion-poem]}
+    - {title: "自分軸の幸せを最大化", recurrence: medium, intensity: high, consistency: high, sources: [notion-poem]}
+    - {title: "健康が最大の資産（体調を仕事より優先）", recurrence: high, intensity: high, consistency: high, sources: [notion-poem, meetings]}
+    - {title: "2つの70%", recurrence: high, intensity: medium, consistency: high, sources: [notion-poem]}
+    - {title: "慢性的ストレスから心身を守る（メンバー疲弊への配慮）", recurrence: medium, intensity: high, consistency: high, sources: [meetings]}
+  ai-utilization:
+    - {title: "AI活用の核心は思考プロセスの言語化", recurrence: high, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "AI出力を信用しすぎない（最終確認は人）", recurrence: high, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "物量はAI、戦略は人", recurrence: medium, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "AIは必要最小情報のとき最も賢い", recurrence: medium, intensity: high, consistency: high, sources: [meetings]}
+    - {title: "スペックドリブン開発", recurrence: medium, intensity: medium, consistency: high, sources: [meetings]}
+
+# ── 周辺（ペリフェラル）: _archive.md へ退避済み。再観測で頻度が上がれば昇格 ──
+peripheral_archived:
+  - {title: "会議終わりの謙遜「また無駄話が多くなりました」", from: communication-style.md, recurrence: low, intensity: low, consistency: low, observed: 1}
+  - {title: "DBオブジェクトはフラット化せず塊で保持", from: code-review.md, recurrence: low, intensity: low, consistency: medium, observed: 1}
+  - {title: "座標は%で持てば再計算不要（データの持ち方の具体例）", from: code-review.md, recurrence: low, intensity: low, consistency: low, observed: 1}
