@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人材育成 — 清田 侑</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c2430;--muted:#5f6b7a;--line:#e6e9ee;--accent:#2f6f6b;--accent-soft:#e7f1f0;--shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .inner{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.topbar .home{font-weight:700;color:var(--accent);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);}
+.topbar .home:hover{background:var(--accent);color:#fff}
+.topbar .site{font-size:13px;color:var(--muted);white-space:nowrap}
+.pills{max-width:880px;margin:0 auto;padding:10px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pills a{font-size:12.5px;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.pills a:hover{border-color:var(--accent);color:var(--accent)}
+.pills a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:8px 20px 80px}
+.article{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:18px;box-shadow:var(--shadow);}
+.article h1{font-size:27px;margin:0 0 8px;border-bottom:2px solid var(--accent-soft);padding-bottom:12px}
+.article h2{font-size:19px;margin:34px 0 12px;color:var(--accent);border-left:4px solid var(--accent);padding-left:12px}
+.article h3{font-size:16px;margin:24px 0 8px}
+.article blockquote{margin:14px 0;padding:10px 16px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;color:#244f4c}
+.article code{background:#eef1f5;padding:2px 6px;border-radius:5px}
+.article pre{background:#1c2430;color:#e6e9ee;padding:16px 18px;border-radius:10px;overflow:auto}
+.article pre code{background:none;color:inherit;padding:0}
+.article table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.article th{background:var(--accent-soft);color:#244f4c}
+footer{max-width:880px;margin:26px auto 0;padding:0 20px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner">
+  <a class="home" href="./summary.html">← サマリへ戻る</a>
+  <span class="site">清田 侑・ブレインマップ</span>
+</div></div>
+<nav class="pills"><a href="./work-philosophy.html">仕事哲学</a>
+<a href="./communication-style.html">コミュニケーションスタイル・口癖</a>
+<a href="./feedback-style.html">フィードバックの書き方</a>
+<a href="./project-management.html">プロジェクトマネジメント</a>
+<a href="./requirements-and-design.html">要件定義・設計</a>
+<a href="./code-review.html">コードレビュー・開発の進め方</a>
+<a href="./people-development.html" class="active">人材育成</a>
+<a href="./evaluation-and-growth.html">評価制度・振り返り・PDCA運用</a>
+<a href="./ai-utilization.html">AI活用 / ツール戦略</a>
+<a href="./decision-making.html">意思決定パターン</a>
+<a href="./life-philosophy.html">人生哲学・心の御し方</a></nav>
+<div class="wrap"><article class="article"><h1 id="_1">人材育成</h1>
+<p>清田の人材育成方針。IT部門長として、エンジニアの成長を加速させるためにどう接するか。Notion 振り返りシートの部門長FB、Obsidian メンバーノート、年末プレゼンFB、案件α 週例・IT部門改善検討の会議文字起こしから抽出。重要度の高い「コア」を先頭に置く。</p>
+<h2 id="_2">コア — 育成で最も大切にしている方針</h2>
+<blockquote>
+<p>高頻度・強い確信で一貫して観測される、清田の育成観を最も特徴づける方針。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>ベーススキルを最初に・漏らさず・確実に身につけさせる</strong>: PDCA、報連相、タスク管理、コミュニケーション、質問力、安定した勤怠、論理的思考力、自己理解。<strong>これらに穴があると、その上にスキルを積み重ねても無駄になる</strong>。<blockquote>
+<p>「現在のポジションとして必須な要素が不足しており、バケツに穴が空いてる状態なので、どんだけ水を注いでも無駄になってしまう」</p>
+</blockquote>
+</li>
+<li><strong>「結局は課題解決能力が全て」</strong>: これがあればどの領域でも比較的容易にレベルアップする、と考える育成の最終到達点。<blockquote>
+<p>「結局は、課題解決能力が全てです。問題があり、それを解決する方法を考えるのを常に行うようにしましょう。…技術的なインフラ領域に関しても、わかっていること、わかっていないことを整理して、じゃあそれをわかるようになるためには何が必要なのかを考えて遂行するだけなので。この解決・遂行の方法に、自分ができないことに対する突破方法も確立できると、基本的には怖いものなしです」</p>
+</blockquote>
+</li>
+<li><strong>弱みはマイナスからゼロに、その上で強みを伸ばす</strong>: まず致命的な弱みを潰しゼロにしてから強みに特化させる順序を求める。<blockquote>
+<p>「極端なネガティブがあると相手にされなくなる。せめて0にしてくれ、その上で強みを突き進めてくれ」</p>
+</blockquote>
+</li>
+<li>理由は組織構造（スモールチーム / 1人アサイン / プレイングマネージャーが多く、弱みを他者で補う手段が難しい）。ただし「組織が大きくタレントが多様なら強み特化も成り立つ」と理想形も認識。</li>
+<li><strong>「メンバーが抜けても回る体制」を意識させる</strong>: メンバーA「案件α を自分なしでやり切る」、メンバーF「メンバーAが抜けても案件α が回るようスキルを学ぶ」、メンバーE「上司Aでなく自分が窓口になる信頼を得る」、メンバーP「総務・労務領域をリードできる存在に」。</li>
+<li><strong>リーダーには「自分が全部やらない（委任を促す）」</strong>: リーダーのミッションは「自分がレビューすることでなく、最終的に品質高くタスクを終わらせること」。「メンバーAが別にやらなきゃいけないわけじゃない、メンバーFやメンバーJに依頼すればいい」「いい意味での丸投げ」。</li>
+<li><strong>「指摘されたことは繰り返さない」を要求</strong>: 一度した指摘は、改善されないと信頼を失う。指摘ベースで仕組み化を促す。</li>
+<li><strong>「思考の癖」で他者を分類し、接し方を変える</strong>（観察ログは Obsidian メンバーノートに日付付きで蓄積）。下記「接し方の使い分け（タイプ別）」参照。</li>
+<li><strong>主体性は外から誘発しても生まれない</strong>: 持ち回りオーナー制・アイデア反映の仕組みを複数やっても「考えさせられる機会を得たから出しました、で湧き上がるパッションじゃない」。7〜8年会社をやっての肌感。</li>
+<li><strong>直接育成より育成の仕組み化に比重を移す（脱・属人化）</strong>: 評価制度・教育プロセス・ペルソナ化へ。エンジニアFB を Claude でドラフトする、思考回路を Markdown 化して公開する（このリポジトリ自体がその試み）。「清田直接じゃない人への教育が仕組み化できると良い。横に縦に」。</li>
+</ul>
+<h2 id="_3">接し方の使い分け（タイプ別）</h2>
+<p>清田は対象メンバーの「思考の癖」を把握し、接し方を変える。</p>
+<ul>
+<li><strong>タイプ A: 思い込みが強く、相手の話を受け取らない</strong>（例: メンバーC）→ <strong>自己理解を促す</strong>。「無意識下でその力が出ちゃっていることを理解し、場面によってONOFFできるようになることが、自己理解と力の活用」。</li>
+<li><strong>タイプ B: 文脈構築が苦手・話が崩れる</strong>（例: メンバーG）→ <strong>文脈読みせず文字通り聞く</strong>。「普通こう考えるとか、この接続詞はこうとか読まずに聞いた方が良い」。</li>
+<li><strong>タイプ C: 報連相が苦手、目の前のことに集中しすぎる</strong>（例: メンバーD）→ <strong>意識ではなく仕組みで解決</strong>させる（毎日の意識付けの仕組み・定期通知・カレンダーブロック）。</li>
+<li><strong>タイプ D: 受け身・指示待ち</strong>（例: メンバーP）→ <strong>自ら設計・決断する責任を負わせる</strong>。開発スキルが十分なメンバーには能動性を求める。「"これやった方がいいと思うんで進めていいですか"とどんどん巻き取ってほしい」。</li>
+<li><strong>タイプ E: 安定型・愚直に取り組む</strong>（例: メンバーB）→ <strong>トレースを評価しつつ次のフェーズへ</strong>。「だいぶ私の考えをトレースできるようになっている…結構有効な手段」と肯定しつつ、次は自律的判断へ。</li>
+<li><strong>タイプ F: 苦手分野を無意識に避ける</strong>（例: メンバーD）→ <strong>指摘を明示し本人にも自覚させる</strong>。「これが成長の幅を下げてしまっている」。</li>
+</ul>
+<h2 id="_4">成長の段階モデル（清田の捉え方）</h2>
+<ul>
+<li><strong>新人段階</strong>: 報連相・タスク管理・素直さ。<strong>自分が思っている3倍の報連相</strong>でちょうど良い。</li>
+<li><strong>若手段階</strong>: PDCA を回せる、客観的な課題整理 + 具体的な解決アクション。仕組み化のセンス。</li>
+<li><strong>中堅段階</strong>: セルフレビューができる。一人で品質を担保できる。</li>
+<li><strong>リード段階</strong>: プロジェクト全体を把握し、次の一手を見出す。自分の作業は二の次。</li>
+<li><strong>シニア段階</strong>: 課題解決能力が全ての領域で発揮できる。新領域でも「わかっていること・わかっていないこと → 必要なもの → 遂行」のフローを回せる。</li>
+</ul>
+<h2 id="_5">補助的なパターン</h2>
+<blockquote>
+<p>複数回観測されるが、コアほど中心的でない／状況依存の項目。</p>
+</blockquote>
+<ul>
+<li><strong>経験させる業務の設計（成長機会の配分）</strong>: 若手に調整・コミュニケーション系を経験させる。育成機会のため上流〜下流を自社で受ける大きめの案件を取りたい。「1人SESアサインだと開発スキルだけ磨かれ、プロジェクトリードが育たない」。</li>
+<li><strong>メンバーへの励まし・マインドセット</strong>:</li>
+<li>「できなくても大丈夫。死にはしない。次に活かせば良い」（失敗を恐れさせない）。</li>
+<li>「全てはゲーム的なレベルアップのためのイベントシーンだと捉え楽しむ」。</li>
+<li>「現時点で自分の得意不得意を作らないほうが良い」。</li>
+<li>「準備が自信につながる」（特に最初はものすごく時間を使う）。</li>
+<li><strong>研修・インプットの定着設計</strong>: 研修はインプットだけでなく定着（アウトプット化）の設計が要る。前職の3.5ヶ月研修も「表層的なことを知った気になってただけ」と研修単体の限界を自覚。</li>
+<li><strong>部門から離れていく方針</strong>: 「私がIT部門からなるべく離れていく方針があって、メンバーが主体的に動く形に変えたい」。品質改善会はリードエンジニアに委譲済み。</li>
+<li><strong>自分は内向き（"打ち気"）と自覚</strong>し、外部セミナー等の強制施策には慎重。「勉強会（テーマあり）は交流会（会話強制）より行きやすい」。</li>
+</ul>
+<h2 id="_6">接する際の注意点（協働する他メンバー視点）</h2>
+<ul>
+<li><strong>メンバーの観察ログを取り続けている</strong>: Obsidian の各メンバーノートに「(日付) 観察事項」が継続的に書かれ、同じ指摘を繰り返したかが追跡される。</li>
+<li><strong>「思考の癖」で他者を分類する</strong>: タイプ判定された上で、それに応じた接し方をされる。</li>
+<li><strong>メンバーごとの強みを明確に評価する</strong>（具体エピソードで評価が固定化される）。</li>
+<li><strong>「自分なしで回るか」が究極の指標</strong>: 個人の頑張りでなく、清田なしで案件・部門が機能するかで成長を判断する。</li>
+<li><strong>本音は全体会議より1on1や外部立場のヒアリングで引き出す</strong>。「私が全体の場で聞いても返ってこない。外部立ち位置のメンバーRが聞いた方が話が出てくる」。</li>
+<li><strong>第三者には忖度なく批判してほしいと望む</strong>。「"頭が硬いんだよ"とか"この考え方やばい"があったら教えてほしい。自己認識しなきゃいけない」。</li>
+</ul>
+<h2 id="_7">関連メモリ</h2>
+<ul>
+<li>フィードバックの構造と書き方 → [[feedback-style]]</li>
+<li>コミュニケーションスタイル → [[communication-style]]</li>
+<li>仕事哲学 → [[work-philosophy]]</li>
+<li>プロジェクト運営 → [[project-management]]</li>
+<li>評価制度・振り返り・PDCA運用の詳細 → [[evaluation-and-growth]]</li>
+</ul></article></div>
+<footer>このページは <code>people-development.md</code> から自動生成 — <a href="./summary.html">サマリへ戻る</a></footer>
+</body>
+</html>

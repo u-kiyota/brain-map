@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>評価制度・振り返り・PDCA運用 — 清田 侑</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c2430;--muted:#5f6b7a;--line:#e6e9ee;--accent:#2f6f6b;--accent-soft:#e7f1f0;--shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .inner{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.topbar .home{font-weight:700;color:var(--accent);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);}
+.topbar .home:hover{background:var(--accent);color:#fff}
+.topbar .site{font-size:13px;color:var(--muted);white-space:nowrap}
+.pills{max-width:880px;margin:0 auto;padding:10px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pills a{font-size:12.5px;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.pills a:hover{border-color:var(--accent);color:var(--accent)}
+.pills a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:8px 20px 80px}
+.article{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:18px;box-shadow:var(--shadow);}
+.article h1{font-size:27px;margin:0 0 8px;border-bottom:2px solid var(--accent-soft);padding-bottom:12px}
+.article h2{font-size:19px;margin:34px 0 12px;color:var(--accent);border-left:4px solid var(--accent);padding-left:12px}
+.article h3{font-size:16px;margin:24px 0 8px}
+.article blockquote{margin:14px 0;padding:10px 16px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;color:#244f4c}
+.article code{background:#eef1f5;padding:2px 6px;border-radius:5px}
+.article pre{background:#1c2430;color:#e6e9ee;padding:16px 18px;border-radius:10px;overflow:auto}
+.article pre code{background:none;color:inherit;padding:0}
+.article table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.article th{background:var(--accent-soft);color:#244f4c}
+footer{max-width:880px;margin:26px auto 0;padding:0 20px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner">
+  <a class="home" href="./summary.html">← サマリへ戻る</a>
+  <span class="site">清田 侑・ブレインマップ</span>
+</div></div>
+<nav class="pills"><a href="./work-philosophy.html">仕事哲学</a>
+<a href="./communication-style.html">コミュニケーションスタイル・口癖</a>
+<a href="./feedback-style.html">フィードバックの書き方</a>
+<a href="./project-management.html">プロジェクトマネジメント</a>
+<a href="./requirements-and-design.html">要件定義・設計</a>
+<a href="./code-review.html">コードレビュー・開発の進め方</a>
+<a href="./people-development.html">人材育成</a>
+<a href="./evaluation-and-growth.html" class="active">評価制度・振り返り・PDCA運用</a>
+<a href="./ai-utilization.html">AI活用 / ツール戦略</a>
+<a href="./decision-making.html">意思決定パターン</a>
+<a href="./life-philosophy.html">人生哲学・心の御し方</a></nav>
+<div class="wrap"><article class="article"><h1 id="pdca">評価制度・振り返り・PDCA運用</h1>
+<p>IT部門長として清田が回している評価・振り返り（PDCA）運用と、その設計思想。本ファイルは Gemini 会議メモ（IT部門改善検討・メンバーR 回: 2026/4/9, 5/13, 5/29）の文字起こしから構成。重要度の高い「コア」を先頭に置く。</p>
+<h2 id="_1">コア — 評価・振り返り運用で最も大切にしていること</h2>
+<blockquote>
+<p>高頻度・強い確信で一貫して観測される、清田の評価設計を最も特徴づける思想。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>振り返り（月次）と評価（年次）は別物</strong>: 「振り返りは月々の成長のためにやっていて、評価は年末に1回まとめて現時点のスキルを確認する」。</li>
+<li><strong>評価は結果（パフォーマンス）ベース、努力は評価シートに反映しない</strong>: 「努力を評価シートとして評価することはない。もちろん褒めることはあるかもしれないけど、それはない」。</li>
+<li><strong>PDCA定着が根本課題</strong>: 「トータルの落とし所として、PDCA を回せるようになってないのが一番気になる」。形式（フォーマット）より運用の習得が先決。「分かってない使い方で高頻度にやっても意味がない。1回をきちんと正しく使えるよう習得させる方がいい」。</li>
+<li><strong>月1振り返りの意図＝早期の方向修正</strong>: 「PDCA を回せるなら期間を長く取っても自分で回転させて成長する。でも回せてないときに期間を長くすると、何の成長もない期間でこちらが手も入れられず、遠回しになるだけ。月1なら方向性のズレや改善不足をその時点で指摘できる」。ただし「月1がベストとは思ってない、辛いだろうとも分かる」と負担も認識。</li>
+</ul>
+<h2 id="_2">補助的なパターン</h2>
+<blockquote>
+<p>複数回観測されるが、コアほど中心的でない／状況依存の項目。</p>
+</blockquote>
+<ul>
+<li><strong>スキル定義の粒度が粗いと自己評価と最終評価が乖離する</strong>: 「"開発できる"ってどういう品質でどこまでできるの、という粒度が粗い」。</li>
+<li><strong>振り返りシートは"目標設定値とその改善アクションの妥当性"で評価する</strong>: 意気込みや感想でなく、具体的プロセスが書けているか。</li>
+<li><strong>ランクアップ要件はあるが"そこへ至る道（アクションプラン/ロードマップ）"がない</strong>のが評価制度の課題。「要件は達成するための要件だが、そこに至る道が用意されてない。"足りないのは分かるが上げ方が分からない"状態になる」。</li>
+<li><strong>ピアフィードバックの捉え方</strong>:</li>
+<li>マネージャーは"自分ができてないこと"も棚に上げて指摘する必要があるが、若手にはその切り替えがまだ身についていない。</li>
+<li>業務・技術評価は直接関わる上司にしか見えない部分が多く、小規模チームではピアFBの評価者が限定されすぎる。一方、ビジネス領域・共通項目のピアFBには前向き。</li>
+<li>評価者を本人がピンポイント指名すると、良い面ばかり集まりネガティブが隠れる懸念を持つ。</li>
+</ul>
+<h2 id="_3">主体性・育成との接続</h2>
+<ul>
+<li><strong>指摘できるのが自分だけ＝属人化</strong>を組織課題とみなす。「私が言わなきゃ何ともならない、になってる」。</li>
+<li><strong>主体性は外から誘発しても生まれない</strong>（→ [[people-development]]）。「持ち回りオーナー制やアイデア反映の仕組みをやっても、湧き上がるパッションにはならない、というのが7〜8年やっての肌感」。</li>
+<li><strong>メンバーの本音は全体会議でなく1on1や外部立場のヒアリングで引き出す</strong>。「私が全体で聞いても返ってこない。外部立ち位置の人が聞いた方が話が出る」。</li>
+<li>育成・委任・弱み補完の方針は [[people-development]]、研修の定着設計もそちらを参照。</li>
+</ul></article></div>
+<footer>このページは <code>evaluation-and-growth.md</code> から自動生成 — <a href="./summary.html">サマリへ戻る</a></footer>
+</body>
+</html>

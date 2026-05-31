@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>清田 侑 — ブレインマップ サマリ</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --panel:#ffffff; --ink:#1c2430; --muted:#5f6b7a;
+    --line:#e6e9ee; --accent:#2f6f6b; --accent-soft:#e7f1f0;
+    --warn:#b4612a; --warn-soft:#fbeee2; --core:#2f6f6b;
+    --shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:32px 20px 80px}
+  /* Header */
+  header.hero{
+    background:linear-gradient(135deg,#2f6f6b 0%,#27585a 100%);
+    color:#fff;border-radius:18px;padding:34px 34px 30px;box-shadow:var(--shadow);
+  }
+  header.hero h1{margin:0;font-size:32px;letter-spacing:.04em}
+  header.hero .role{margin:8px 0 0;font-size:15px;opacity:.92}
+  header.hero .meta{margin-top:16px;font-size:12px;opacity:.78;line-height:1.6}
+  /* Summary */
+  .summary{
+    background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--accent);
+    border-radius:14px;padding:22px 24px;margin:22px 0;box-shadow:var(--shadow);font-size:15.5px;
+  }
+  .summary strong{color:var(--accent)}
+  /* Section */
+  section{margin-top:34px}
+  h2.sec{
+    font-size:13px;letter-spacing:.14em;color:var(--accent);font-weight:700;
+    text-transform:uppercase;margin:0 0 14px;display:flex;align-items:center;gap:10px;
+  }
+  h2.sec::before{content:"";width:22px;height:2px;background:var(--accent);border-radius:2px}
+  /* Cards grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;box-shadow:var(--shadow);
+  }
+  .card h3{margin:0 0 10px;font-size:15px;color:var(--ink)}
+  .card ul{margin:0;padding-left:0;list-style:none}
+  .card li{position:relative;padding:5px 0 5px 18px;font-size:14px;color:var(--ink);border-top:1px solid var(--line)}
+  .card li:first-child{border-top:none}
+  .card li::before{content:"";position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .card li b{color:var(--accent);font-weight:600}
+  /* Attention block (the important part) */
+  .attn{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:6px 0;box-shadow:var(--shadow);overflow:hidden}
+  .attn .group{padding:20px 24px;border-top:1px solid var(--line)}
+  .attn .group:first-child{border-top:none}
+  .attn .glabel{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;padding:4px 12px;border-radius:999px;margin-bottom:12px}
+  .glabel.core{background:var(--accent-soft);color:var(--accent)}
+  .glabel.warn{background:var(--warn-soft);color:var(--warn)}
+  .glabel.note{background:#eef1f5;color:var(--muted)}
+  .attn dl{margin:0}
+  .attn dt{font-weight:600;font-size:14.5px;margin-top:14px;color:var(--ink)}
+  .attn dt:first-of-type{margin-top:0}
+  .attn dd{margin:3px 0 0;font-size:13.5px;color:var(--muted);line-height:1.7}
+  .attn .flat{font-size:14px;color:var(--ink);padding:6px 0 6px 18px;position:relative;border-top:1px solid var(--line)}
+  .attn .flat:first-of-type{border-top:none}
+  .attn .flat::before{content:"";position:absolute;left:2px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+  .attn .flat b{color:var(--ink);font-weight:600}
+  /* Knowledge base links */
+  .kb{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:680px){.kb{grid-template-columns:1fr}}
+  .kb a{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:.15s;
+  }
+  .kb a:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .kb a .t{font-weight:600;font-size:14.5px;color:var(--accent)}
+  .kb a .d{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+  footer{margin-top:40px;text-align:center;font-size:12px;color:var(--muted)}
+  .lede{font-size:13px;color:var(--muted);margin:-6px 0 14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>清田 侑</h1>
+    <p class="role">omeroid 株式会社 COO ／ IT部門長・コーポレート部門長 ／ 経営会議メンバー</p>
+    <p class="meta">最終更新: 2026-05-31（重要度で再整理）<br>
+    情報源: Slack・GitHub PRレビュー（3年分）・Notion（仕事理論／振り返り／評価DB）・Obsidian（メンバーノート）・Gemini会議メモ（28会議の口述）</p>
+  </header>
+
+  <div class="summary">
+    omeroid の COO 兼 IT部門長。エンジニア育成・部門運営・主要案件レビューに加え、近年は <strong>AI（Claude）を業務に組み込み部門全体の生産性を上げる</strong>取り組みをリード。
+    <strong>「面白くもない既知のことを愚直に積み重ねること」が真理</strong>だと信じ、PDCA・報連相・タスク管理など基礎スキルへのこだわりが極めて強い。仕事は<strong>速度 &gt; 量 &gt; 品質</strong>、メンタルは<strong>2つの70%</strong>、改善は<strong>「意識ではなく仕組みで解決」</strong>が口癖。思考は<strong>抽象と具体を往復し「なぜ？反論は？」と深掘り続ける</strong>のが特徴。
+  </div>
+
+  <section>
+    <h2 class="sec">人物プロフィール</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>強み・専門領域</h3>
+        <ul>
+          <li><b>エンジニア育成と評価制度設計</b>（振り返り／部門長FB／年末プレゼンFB）</li>
+          <li><b>PM・品質レビュー</b>（仕様書・要件定義・設計の観点に強いこだわり）</li>
+          <li><b>コードレビュー</b>（Go中心。PRを1行ずつ読み、層分離・命名・データ層を横串で見る）</li>
+          <li><b>ベーススキルの体系化</b>（報連相・タスク管理・PDCA）</li>
+          <li><b>AI業務活用</b>（Claude Skills化。要件定義・レビューにAIを組込）</li>
+          <li><b>見積もり・提案レビュー</b>（スコープ＋単価＋契約形態で即検証）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>思考の特徴</h3>
+        <ul>
+          <li><b>抽象⇄具体を高速で往復</b>。「具体的には？」「もう一段抽象化すると？」</li>
+          <li><b>「数値で言うと？」</b>が定型の追加質問</li>
+          <li><b>「仕組みで解決」</b>。気をつける／意識するは解決策と認めない</li>
+          <li><b>長期視点での信頼貯金</b>を重視</li>
+          <li><b>「自分が抜けても回るか」</b>を組織判断の指標に</li>
+          <li><b>工程順序を守る</b>。大枠→詳細、課題整理→解決策</li>
+          <li><b>常に自分を疑う</b></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>コミュニケーションの特徴</h3>
+        <ul>
+          <li>丁寧で柔らかい「〜です/ます」基調。理由を必ず添える</li>
+          <li>冒頭は <b>「ありがとうございます。FBです」</b> が定形</li>
+          <li>強い指摘は <b>「言い方悪いですが」</b> と前置き</li>
+          <li><b>質問に質問で返さない</b>（メンバーがやると指摘する）</li>
+          <li><b>相手の話を受け取らない人を最も嫌う</b>（自己解釈フィルター）</li>
+          <li>比喩を多用（穴の空いたバケツ／時間は麻薬 ほか）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>役割・立場</h3>
+        <ul>
+          <li>omeroid 株式会社 COO（最高執行責任者）</li>
+          <li>IT部門長・コーポレート部門長</li>
+          <li>主要中規模案件（案件α）の伴走者（PLはメンバーへ委譲中）</li>
+          <li>経営会議メンバー</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">接する際の注意点</h2>
+    <p class="lede">他のメンバーが協働・対話するうえで押さえておくべきこと</p>
+    <div class="attn">
+
+      <div class="group">
+        <span class="glabel core">大切にしていること（仕事・人生）</span>
+        <dl>
+          <dt>愚直な積み重ねと丁寧さ</dt>
+          <dd>「面白くもない既知のことを愚直に」「めんどくさいことを丁寧に」が信頼の源泉。基礎の手抜き・雑な仕事を最も嫌う。</dd>
+          <dt>報連相は早ければ早いほど良い</dt>
+          <dd>タスクが終わらないこと自体より「終わらないと事前に言わないこと」を最大の失敗とみなす。</dd>
+          <dt>仕組みで解決する</dt>
+          <dd>「気をつける／意識する」は不可。再発を防ぐ仕組み（カレンダーブロック・通知・テンプレ・WBS）まで含めて改善。</dd>
+          <dt>長期的な信頼を最優先</dt>
+          <dd>短期メリットより信頼関係を優先。「信頼貯金」という言葉で関係性を捉える。</dd>
+          <dt>属人化を嫌い「自分が抜けても回る」を目指す</dt>
+          <dd>個人の頑張りでなく、その人なしで案件・部門が機能するかで成長を測る。</dd>
+          <dt>メタ認知／「世界は自分が作る」／健康・自分軸の幸せ（人生面）</dt>
+          <dd>自分を客観視し相手視点で考える。感情は自分の想像と捉え相手の発言はそのまま受け取る。睡眠・食事・運動を最重要資産とし、自分軸の幸せを最大化。</dd>
+        </dl>
+      </div>
+
+      <div class="group">
+        <span class="glabel warn">誤解されやすいこと（意図と受け取りのギャップ）</span>
+        <dl>
+          <dt>深掘りの質問（「具体的には？」「数値で言うと？」）</dt>
+          <dd>意図は思考整理・解像度を上げる支援。だが受け手は「詰められている」と感じやすい（本人も自覚）。</dd>
+          <dt>「期限は守らなくてはいけないもの」</dt>
+          <dd>「一人でやり切れ」ではなく「守れないなら適切に報連相せよ」。報連相込みの期限厳守を求めている。</dd>
+          <dt>柔らかい口調</dt>
+          <dd>必須指摘も同じトーンで来る。重大度は言い回しに表れる（素の命令形・「言い方悪いですが」・「信頼貯金が底をついた」＝警告レベル高）。</dd>
+          <dt>「個人の好み」と前置きした指摘</dt>
+          <dd>本当のnitsも多いが、命名やアーキの一貫性は譲らないことも。好みかブロッカーかは明示されるので読む。</dd>
+          <dt>指示の「目的」と「手段」の取り違え</dt>
+          <dd>伝えるのは多くの場合「目的」。手段に固定して「無理だ」と返すとズレる。まず目的を確認してから手段を提案する。</dd>
+          <dt>AIツールへの期待値</dt>
+          <dd>活用は推進する一方、出力は信用しすぎない。「最終成果物が合っているか」を必ず問われる。</dd>
+        </dl>
+      </div>
+
+      <div class="group">
+        <span class="glabel note">その他の協働上の注意点</span>
+        <div class="flat"><b>報告は数値と具体で</b>。「頑張った」ではなく「予定の80%完了」「6時間で○件」。</div>
+        <div class="flat"><b>改善策は仕組みで返す</b>。「気をつけます」は通らない。</div>
+        <div class="flat"><b>抽象的な要件・仕様書は通らない</b>。条件・分岐・型・網羅性まで詰める（反対ケースも）。</div>
+        <div class="flat"><b>PRは出す前に1行ずつ自分で読む</b>。機械的ミスはフォーマッタ/エディタ設定で根絶。</div>
+        <div class="flat"><b>指摘には必ず返信し横串で直す</b>。1箇所で終わらせず同種コード全てに波及。</div>
+        <div class="flat"><b>同じ指摘の繰り返しは信頼を失う</b>。「前回も同じ指摘」は強い警告。</div>
+        <div class="flat"><b>目標はSMARTで</b>。特に測定可能性と評価項目との関連性を厳しく見る。</div>
+        <div class="flat"><b>議論は課題と解決策を分ける</b>。①課題整理 → ②解決策の順。</div>
+        <div class="flat"><b>進捗は「完了予定日」で報告</b>。「何日遅れ」だけでは通らない。「できるベース」進行を嫌う。</div>
+        <div class="flat"><b>見積もりはスコープと単価込みで</b>。設計・テスト・移行・人月・単価・契約形態まで。</div>
+        <div class="flat"><b>自分や周囲を追い込みすぎない</b>。ギリギリ着手をメンタル面からも問題視。委任も歓迎。</div>
+        <div class="flat"><b>AIを使うなら出力を自分で確認する</b>。集計・変換系ほど目視確認。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">知識ベース（詳細ファイル）</h2>
+    <div class="kb">
+      <a href="./work-philosophy.html"><span class="t">仕事哲学</span><span class="d">PDCA・報連相・速度量品質・70%メソッド・主体性</span></a>
+      <a href="./communication-style.html"><span class="t">コミュニケーションスタイル</span><span class="d">Slack文体・口癖・FB時の文章構造</span></a>
+      <a href="./feedback-style.html"><span class="t">フィードバックの書き方</span><span class="d">部門長FBの構造・トーンの使い分け・サンプル</span></a>
+      <a href="./project-management.html"><span class="t">プロジェクトマネジメント</span><span class="d">スケジュール管理・課題整理・会議運営・権限委譲</span></a>
+      <a href="./requirements-and-design.html"><span class="t">要件定義・設計・見積もり</span><span class="d">工程順序・曖昧排除・網羅性・スコープ・見積戦略</span></a>
+      <a href="./code-review.html"><span class="t">コードレビュー・開発の進め方</span><span class="d">頻出観点・1行ずつ読む・Git運用・本番規律・二重管理排除</span></a>
+      <a href="./people-development.html"><span class="t">人材育成</span><span class="d">タイプ別の接し方・成長段階・課題解決能力・委任</span></a>
+      <a href="./evaluation-and-growth.html"><span class="t">評価制度・振り返り・PDCA運用</span><span class="d">振り返りと評価の切り分け・結果ベース評価・ランクアップ</span></a>
+      <a href="./ai-utilization.html"><span class="t">AI活用・ツール戦略</span><span class="d">思考の言語化・スペックドリブン・スキル化・出力確認の規律</span></a>
+      <a href="./decision-making.html"><span class="t">意思決定パターン</span><span class="d">メリデメ・採用面接軸・タイムボックス・定量閾値・受注判断</span></a>
+      <a href="./life-philosophy.html"><span class="t">人生哲学・心の御し方</span><span class="d">メタ認知・世界は自分が作る・健康・幸せ・習慣の力</span></a>
+    </div>
+  </section>
+
+  <footer>
+    清田 侑 ブレインマップ — サマリ（人間閲覧用）｜ 詳細は各 .md を参照
+  </footer>
+
+</div>
+</body>
+</html>

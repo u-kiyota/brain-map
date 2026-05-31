@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コミュニケーションスタイル・口癖 — 清田 侑</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c2430;--muted:#5f6b7a;--line:#e6e9ee;--accent:#2f6f6b;--accent-soft:#e7f1f0;--shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .inner{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.topbar .home{font-weight:700;color:var(--accent);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);}
+.topbar .home:hover{background:var(--accent);color:#fff}
+.topbar .site{font-size:13px;color:var(--muted);white-space:nowrap}
+.pills{max-width:880px;margin:0 auto;padding:10px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pills a{font-size:12.5px;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.pills a:hover{border-color:var(--accent);color:var(--accent)}
+.pills a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:8px 20px 80px}
+.article{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:18px;box-shadow:var(--shadow);}
+.article h1{font-size:27px;margin:0 0 8px;border-bottom:2px solid var(--accent-soft);padding-bottom:12px}
+.article h2{font-size:19px;margin:34px 0 12px;color:var(--accent);border-left:4px solid var(--accent);padding-left:12px}
+.article h3{font-size:16px;margin:24px 0 8px}
+.article blockquote{margin:14px 0;padding:10px 16px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;color:#244f4c}
+.article code{background:#eef1f5;padding:2px 6px;border-radius:5px}
+.article pre{background:#1c2430;color:#e6e9ee;padding:16px 18px;border-radius:10px;overflow:auto}
+.article pre code{background:none;color:inherit;padding:0}
+.article table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.article th{background:var(--accent-soft);color:#244f4c}
+footer{max-width:880px;margin:26px auto 0;padding:0 20px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner">
+  <a class="home" href="./summary.html">← サマリへ戻る</a>
+  <span class="site">清田 侑・ブレインマップ</span>
+</div></div>
+<nav class="pills"><a href="./work-philosophy.html">仕事哲学</a>
+<a href="./communication-style.html" class="active">コミュニケーションスタイル・口癖</a>
+<a href="./feedback-style.html">フィードバックの書き方</a>
+<a href="./project-management.html">プロジェクトマネジメント</a>
+<a href="./requirements-and-design.html">要件定義・設計</a>
+<a href="./code-review.html">コードレビュー・開発の進め方</a>
+<a href="./people-development.html">人材育成</a>
+<a href="./evaluation-and-growth.html">評価制度・振り返り・PDCA運用</a>
+<a href="./ai-utilization.html">AI活用 / ツール戦略</a>
+<a href="./decision-making.html">意思決定パターン</a>
+<a href="./life-philosophy.html">人生哲学・心の御し方</a></nav>
+<div class="wrap"><article class="article"><h1 id="_1">コミュニケーションスタイル・口癖</h1>
+<p>清田の発話・記述に共通するパターン。Slack のやり取り、振り返りシートの部門長FB、Notion ポエム、会議の文字起こし（話し言葉）から抽出。重要度の高い「コア」を先頭に、状況依存の「補助的なパターン」を後段に置く。</p>
+<h2 id="_2">コア — 最も大切にしている／繰り返し現れる</h2>
+<blockquote>
+<p>高頻度・強い確信で一貫して観測される、清田を最も特徴づけるスタンス。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>相手主体</strong>: 自分主体ではなく、相手がどう思っているか・何をしてほしいかを、事前にも会話中にも考える。ミスコミュニケーションが起きづらくなる。</li>
+<li><strong>質問に質問で返さない</strong>: 質問されたらまず回答する。逆にメンバーがこれをやると指摘する。<blockquote>
+<p>「コミュニケーション取れないあるあるで、質問に対して回答せず、自分の意見や自分の質問を被せてくる人は、これができてないことが多い」
+— 文脈: 仕事理論ポエム</p>
+</blockquote>
+</li>
+<li><strong>解釈ズレを責めずに構造で切り分ける</strong>: 相手の受け取りが意図とズレた時、人ではなく解釈プロセスを問題にする。指示が独り歩きして固定化されたら、目的と手段を切り分けて正面から扱う。<blockquote>
+<p>「メンバーAのよくある捉え方の違いなんだけど、私"同期して"なんてお願いしてないのよ。私が言ったことをメンバーAが解釈して、その方法として"同期する"が出てきて、それが固定化されちゃってる」</p>
+</blockquote>
+</li>
+<li><strong>理由を必ず添える</strong>: 単に指摘せず「なぜそうしてほしいか」「そうしないとどうなるか」をセットで書く。話し言葉でも「なぜかって言うと」「逆の視点かな」と根拠を先に示してから本論に入る。<blockquote>
+<p>「期日は努力目標ではなく、守らなくてはいけないもの。（絶対自分でやれというわけではなく、顧客・上長への適切な報連相が必要）」
+— 文脈: PJ進捗のFB</p>
+</blockquote>
+</li>
+<li><strong>強い指摘ほど前置きで和らげる（主張は曲げない）</strong>: 「言い方悪いですが」「私からの一方的な意見にはなりますが」と前置きしてから核心を述べる。<strong>重大度は言い回しに表れる</strong>——柔らかい口調は普段の素で、素の命令形・「言い方悪いですが」・「信頼貯金が底をついた」が出たら警告レベルが高い。</li>
+<li><strong>命令口調を避ける</strong>: 「〜してください」より「〜したほうが良いと思います」「〜だと思います」。ただし明確な指示が必要な場面（期限・FB）では「お願いします」「〜してください」を使う。</li>
+</ul>
+<h2 id="_3">補助的なパターン</h2>
+<blockquote>
+<p>複数回観測されるが、コアほど中心的でない／状況依存の項目。</p>
+</blockquote>
+<ul>
+<li><strong>多様な考え方を考慮する</strong>: 「良し悪し」でなく「そういう考えもあるのか」。全員に呼吸のような思考の癖があり、それが人と違うことを自覚する。例: 特定タイプは質問を興味関心と捉えるが、別タイプは詰められていると感じる。</li>
+<li><strong>ビジネス上の付き合いをする</strong>: お客さんとも社内メンバーとも、仕事はビジネス上の付き合い。<strong>尊重する、丁寧に接する、ふざけない</strong>。これが継続的に良い関係性を生む。</li>
+<li><strong>コミュニケーション手段は目的で使い分ける</strong>: 手段への自分の好み・距離感を自己認識した上で、目的次第で選ぶ。<blockquote>
+<p>「電話の積極活用は私はならない」「根本として1on1を嫌ってるかもだが、FBなど目的が明確な場面では1on1は有効」
+— 文脈: 経営会議</p>
+</blockquote>
+</li>
+<li><strong>冒頭は「ありがとうございます」+「FBです」が定形</strong>（Slack FB の導入）。</li>
+<li><strong>箇条書きと引用ブロックで構造化</strong>: 複数論点はすべて箇条書き＋階層インデント。<code>&gt;</code> で相手の発言を引いて、その下にコメントし、何への返答かを明確化する。</li>
+<li><strong>タスク依頼時は「いつまでに」「何を」「どの粒度で」「なぜ」を全部書く</strong>。</li>
+<li><strong>強い指摘・私見の前の自己開示</strong>: 主張は曲げないが配慮や留保を一言添える。</li>
+<li>不確かさの開示: 「ちょっと嘘言ってたらごめんなさい」。</li>
+<li>私見と指示の区別: 「私だったらこうする、ただ必ずそうしてって話ではない」。</li>
+<li>上司A（CEO）への配慮: 「ディスってるみたいに聞こえちゃうけど」と前置きしてから率直に指摘。</li>
+<li>追いつけない時の率直さ: 「ちょっと追いついてないな」と取り繕わない。</li>
+<li>脱線の自己モニタリング: 「ごめんなさい、話それました」「定例に戻りますか」と自分で軌道修正。</li>
+</ul>
+<h2 id="_4">典型的な発言・口癖</h2>
+<blockquote>
+<p>上のコア／補助に対応する代表的な言い回し。重要度順。</p>
+</blockquote>
+<h3 id="_5">受け取り方の問題を指摘する系（最頻出の指摘）</h3>
+<blockquote>
+<p>「相手が聞いていることを正しく受け取れてない」
+「受け取った言葉に、自己解釈を挟んで、さらに次の回答を先読みして回答しようとしている」
+「思い込みの力が強い。自分が考えついたこと、思ったことがあると、それがフィルターとなり、外からの情報をそのまま受け取れていない」
+— 文脈: 何度も認識ずれが発生するメンバーへの指摘。<strong>清田が最も頻繁に観察し、最もよく指摘するアンチパターン</strong>。</p>
+</blockquote>
+<h3 id="_6">課題の本質を問い直す系</h3>
+<blockquote>
+<p>「で、結局これって何の課題を解いてるんだっけ？」
+「これは何を目的として、何ができるようになることが達成なのでしょうか？」
+「もうちょっと抽象度を上げると、スキルとしてどのようなことができるようになったのでしょうか」
+「別の聞き方するんですけど、それ今使えないじゃないですか。使えるようにするには何が必要なの？」
+— 文脈: 議論が手段先行になったとき、目標設定が「行動」止まりのとき、議論を本質的な問いにリセットしたいとき。</p>
+</blockquote>
+<h3 id="max">信頼への警鐘系（真剣度MAX）</h3>
+<blockquote>
+<p>「言い方悪いですが、全体的に本当に稼働しているのか不安になるくらいの進め方になってます。進捗が遅いのもそうですし、報連相が全然ないためです。信頼貯金が底をついてるので、改善お願いします」
+— 文脈: 進捗・報連相が悪いメンバーへの直接的フィードバック。これが出たら警告レベルが高い。</p>
+</blockquote>
+<h3 id="_7">数値・具体で答えさせる系</h3>
+<blockquote>
+<p>「数値で言うと？」
+「具体的にどういう状況ですか？」
+「6時間分の成果が見られないのですが、具体的に何をやって、進捗としてどの成果が出たのか教えて欲しいです」
+— 文脈: 定性的な報告に対する追加質問の定型。</p>
+</blockquote>
+<h3 id="_8">仕組み化を促す系</h3>
+<blockquote>
+<p>「『気をつける』という意識ベースの解決では変わらないので、仕組みで解決してください」
+「意識することになんの意味もなく、具体的な行動を仕組み化する必要がある」
+「やらざるを得ない状況を作ることが効果的です」
+— 文脈: 同じミスを繰り返すメンバーへの指摘。</p>
+</blockquote>
+<h3 id="_9">視野を広げる系</h3>
+<blockquote>
+<p>「自分のやれることだけで思考を止めずに、意図的に、それ以外の考慮すべき点が無いかを常に思考する」
+「常に自分の意識の外に目を向け、他の観点や考慮漏れがないか確認するクセをつける」
+「選択肢は網羅的に出して一番良いものを選択する」
+— 文脈: 視野が狭いメンバーへのFB、要件整理の指導。</p>
+</blockquote>
+<h3 id="_10">文章修正の指示系</h3>
+<blockquote>
+<p>「抽象的なので良くないです。具体的な条件を書いてください」
+「ちょっと何聞いているのかわかってないので、もう少し具体的に説明してもらっても良いですか？」
+「目を通したのですが、いきなり詳細から書かれているので前提や全体像をまず説明してほしいです」
+— 文脈: 仕様書・要件定義の指摘。抽象的すぎる記述を許さない。</p>
+</blockquote>
+<h3 id="_11">軌道修正・締め／不同意を明確にする系</h3>
+<blockquote>
+<p>「言い方悪いですが」「補足、返信不要」「以下個人的なマインド面でのアドバイス」「私だったらこうする、ただ必ずそうしてって話ではない」
+「うーん、あんま思わないね」「全然」（経営会議。賛同しないときは曖昧にせず短く明確に否定）</p>
+</blockquote>
+<h2 id="_12">接続詞・語尾の癖</h2>
+<ul>
+<li><strong>「〜です/〜ます」基調</strong>: フランクすぎず堅すぎず。多用: 「〜と思います」「〜と思ってます」「〜です」「〜ですね」。</li>
+<li><strong>話し言葉の文末</strong>: 「〜って感じかな」「〜ですかね」「〜みたいな」が頻出。</li>
+<li><strong>「〜なので」を多用</strong>（因果を必ず書く）。<strong>「〜とのこと」「〜とのことで」</strong>（第三者から聞いた話）。</li>
+<li><strong>「ぱっと」「ざっくり」「とりあえず」</strong>（暫定的な意見の前置き）。</li>
+<li><strong>相槌</strong>: 「はい。はい。」「よし」「オッケーす」。</li>
+<li><strong>比喩・例え話で説明</strong>: 「夏休みの宿題」「穴の空いたバケツ」「マンガン電池」「時間は麻薬」「跳ね馬のような心」。</li>
+</ul>
+<h2 id="fb">レビュー・FB時の文章構造</h2>
+<p>清田のレビューはこの順で展開されることが多い：
+1. 感謝 or 受領: 「ありがとうございます」
+2. 全体評価: 「良いと思います」「概ね良いです」 or 「以下気になりました」
+3. 個別論点を引用＋コメント: <code>&gt; 〇〇</code> の後に意見・指示
+4. 必要に応じて理由・背景: 「これは〇〇だから」
+5. 締め: 「お願いします」「ご確認ください」 or 「補足、返信不要」</p>
+<h2 id="_13">接する際の注意点（他メンバー目線）</h2>
+<ul>
+<li><strong>抽象的な報告は確実に深掘りされる</strong>: 「具体的には？」「何をやって、どの成果が出たか？」が必ず来る。最初から数値・固有の事実で報告する。</li>
+<li><strong>「気をつけます」「意識します」は通らない</strong>: 「どういう仕組みで再発を防ぐか」までセットで返す。</li>
+<li><strong>相手の意見を受け取らずに自分の意見を被せると激しく嫌う</strong>: まず相手の言いたいことを正しく受け取り、復唱して合意してから自分の意見を述べる。</li>
+<li><strong>「で、結局〇〇は？」と振られたら、目的・本質を問われている</strong>。手段や経緯ではなく目的を答える。</li>
+<li><strong>柔らかい口調でも、「信頼貯金が底をついた」「言い方悪いですが」と前置きされたら強い警告</strong>。改善計画を即座に出す。</li>
+</ul>
+<h2 id="_14">関連メモリ</h2>
+<ul>
+<li>フィードバックの書き方の詳細 → [[feedback-style]]</li>
+<li>人材育成の方針 → [[people-development]]</li>
+<li>仕事の基本哲学 → [[work-philosophy]]</li>
+</ul></article></div>
+<footer>このページは <code>communication-style.md</code> から自動生成 — <a href="./summary.html">サマリへ戻る</a></footer>
+</body>
+</html>

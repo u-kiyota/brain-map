@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>要件定義・設計 — 清田 侑</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c2430;--muted:#5f6b7a;--line:#e6e9ee;--accent:#2f6f6b;--accent-soft:#e7f1f0;--shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .inner{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.topbar .home{font-weight:700;color:var(--accent);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);}
+.topbar .home:hover{background:var(--accent);color:#fff}
+.topbar .site{font-size:13px;color:var(--muted);white-space:nowrap}
+.pills{max-width:880px;margin:0 auto;padding:10px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pills a{font-size:12.5px;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.pills a:hover{border-color:var(--accent);color:var(--accent)}
+.pills a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:8px 20px 80px}
+.article{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:18px;box-shadow:var(--shadow);}
+.article h1{font-size:27px;margin:0 0 8px;border-bottom:2px solid var(--accent-soft);padding-bottom:12px}
+.article h2{font-size:19px;margin:34px 0 12px;color:var(--accent);border-left:4px solid var(--accent);padding-left:12px}
+.article h3{font-size:16px;margin:24px 0 8px}
+.article blockquote{margin:14px 0;padding:10px 16px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;color:#244f4c}
+.article code{background:#eef1f5;padding:2px 6px;border-radius:5px}
+.article pre{background:#1c2430;color:#e6e9ee;padding:16px 18px;border-radius:10px;overflow:auto}
+.article pre code{background:none;color:inherit;padding:0}
+.article table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.article th{background:var(--accent-soft);color:#244f4c}
+footer{max-width:880px;margin:26px auto 0;padding:0 20px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner">
+  <a class="home" href="./summary.html">← サマリへ戻る</a>
+  <span class="site">清田 侑・ブレインマップ</span>
+</div></div>
+<nav class="pills"><a href="./work-philosophy.html">仕事哲学</a>
+<a href="./communication-style.html">コミュニケーションスタイル・口癖</a>
+<a href="./feedback-style.html">フィードバックの書き方</a>
+<a href="./project-management.html">プロジェクトマネジメント</a>
+<a href="./requirements-and-design.html" class="active">要件定義・設計</a>
+<a href="./code-review.html">コードレビュー・開発の進め方</a>
+<a href="./people-development.html">人材育成</a>
+<a href="./evaluation-and-growth.html">評価制度・振り返り・PDCA運用</a>
+<a href="./ai-utilization.html">AI活用 / ツール戦略</a>
+<a href="./decision-making.html">意思決定パターン</a>
+<a href="./life-philosophy.html">人生哲学・心の御し方</a></nav>
+<div class="wrap"><article class="article"><h1 id="_1">要件定義・設計</h1>
+<p>清田が要件定義・仕様策定・設計（アーキテクチャ／DB／非機能）・仕様書レビューを進めるときの考え方と典型的な指摘パターン。Slack の PJ チャンネル（案件α、案件β、自社PJ 等）3年分の発言から抽出。重要度の高い「コア」を先頭に置く。</p>
+<h2 id="_2">コア — 要件定義・設計で最も大切にしている原則</h2>
+<blockquote>
+<p>高頻度・強い確信で一貫して観測される、清田の上流工程を最も特徴づける原則。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>要件が固まる前に実装詳細へ踏み込ませない（大枠→詳細）</strong>。大枠（方向性）を先に固め、スキーマ等の詳細は要件確定後で十分、という工程順序を徹底する。<blockquote>
+<p>「詳細イメージして要件定義しているのはとてもよいですが、ちょっと具体に話が行き過ぎているイメージです。具体的なスキーマ設計などは、要件が固まってからで十分です。」
+「次回の会議までに要件定義書を作る（完成させる）のは厳しそうです。方向性が定まってない中、詳細を定義しても無駄になるからです。」</p>
+</blockquote>
+</li>
+<li><strong>「読み手によって受け取り方が変わらない」具体性を要求する</strong>。日本語の曖昧表現は値域・条件・用途を具体化させる。<blockquote>
+<p>「これだと具体が伝わらず、条件の選択肢の日本語をどう読むかによって、受け取り方が変わっちゃうので、仕様書としては微妙ですね。例えば、1年って具体的に、どこからどこまでの値の場合マッチですか？」
+「『有効期限切れ』という書き方は抽象的なので良くないです。仕様として正しいかの判断がつかないので、具体的な条件を書いてください。」</p>
+</blockquote>
+</li>
+<li><strong>要望をそのまま鵜呑みにせず、課題に立ち戻る</strong>。提示された解決策の裏の「何に困っているか」を深掘りする。<blockquote>
+<p>「みんな解決策を期待して"この機能あったら"と書くが、鵜呑みにすると本当に必要なの？になる。何に困ってるか・課題が何かをまず明確にして深掘りする」</p>
+</blockquote>
+</li>
+<li><strong>網羅は単一情報源に頼らず、ダブル／トリプルチェックできる経路で出す</strong>。<blockquote>
+<p>「なにかを網羅的に出す時は、単一的な情報源だけでなく、ダブルチェック、トリプルチェックができるようにして、ヌケモレがないかを検知できる進め方をしたほうが良いです。ソースから見る、画面一通り見てぬけもれないかチェックしたり…」</p>
+</blockquote>
+</li>
+<li>分岐は反対のケースまで書かせる。「分岐の反対のケースが書かれてないです。…含まない場合は？」</li>
+<li><strong>MVC・責務分離を基本として徹底させる</strong>。<blockquote>
+<p>「①controllerに実装を書かない ②モデルの責務はファイルを分けてモデルに記載する ③データ永続化層は、repositoryとしてファイルを分けて実装」</p>
+</blockquote>
+</li>
+<li><strong>業務用語を優先する</strong>。システム内部名でなく顧客が使う業務名称で会話・定義する。曖昧なまま進めず一度確認する。<blockquote>
+<p>「いかにシステム的に organization だろうが、業務名で呼ばないとダメ。1回ちゃんと開いて確認しないと、派閥が生まれて何が正しいか分からなくなる。面倒でも見る」</p>
+</blockquote>
+</li>
+<li><strong>スコープは実施対象と検討対象を分け、拡大に慎重</strong>。汎用化・別機能化はコスト増を伴うため今回必要な最小限に絞る。<blockquote>
+<p>「今回はあくまで、コンテンツ有効期限のアラートを表示するで良いと思います。スコープを広げると考えることが増えるので大変です。」</p>
+</blockquote>
+</li>
+<li><strong>抜け漏れ防止のため、作業・確認項目は WBS に集約し「それを見れば全て分かる」状態を作る</strong>（仕組みで漏れを防ぐ思想）。<blockquote>
+<p>「抜け漏れ防止のため、本PJで行う作業は全てWBSで管理する。自分もWBSだけ見ればタスク漏れないですし、他の人もあれやってくれたかな？と確認することができます。」</p>
+</blockquote>
+</li>
+<li><strong>レビュー会を仕組み化し、観点をチームに横展開する</strong>（同じ指摘を繰り返させない）。<blockquote>
+<p>「チーム全体の品質向上とレビュースタック防止のために、週1でレビュー会実施したいです。その場でレビューして、レビュー観点をチームで共有して、以後同様の指摘をされないようにすることです。」</p>
+</blockquote>
+</li>
+<li><strong>要件定義書と実際の納品物の不一致を必ず詰める</strong>。どちらに基づく実装か→顧客合意済みか→不一致なら要件定義書を直させる、と段階的に確認する。<blockquote>
+<p>「①要件定義書と名称が違いますが…どちらで実装しているのでしょうか？ ②①がBの場合、要件定義書と実際の納品物が異なることになりますが、顧客の合意済みでしょうか？ ③②が合意済みの場合は、要件定義書を修正してほしいです。」</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="_3">補助的なパターン</h2>
+<blockquote>
+<p>複数回観測されるが、コアほど中心的でない／状況依存の項目。</p>
+</blockquote>
+<ul>
+<li><strong>本格的な要件定義の前に「ざっくり工数→やるか判断→詳細」の順</strong>。コストと意思決定を先に通す。ただし工数見積もりのための具体化は肯定する（早すぎる詳細化と、見積目的の具体化を切り分ける）。</li>
+<li><strong>方針が固まる前に画面イメージ作成等の作り込みをしない</strong>。「どういう方針取るか分からないのにそこに時間使うのはもったいない」。</li>
+<li><strong>要件定義フェーズと実装フェーズを分ける</strong>（工数・期間の設定がしやすい）。</li>
+<li><strong>そもそも論（手段の妥当性）を要件段階で問う</strong>。自作実装ありきになっていないか、既存ツールや有料化で済まないかを必ず検討させる。<blockquote>
+<p>「そもそも案件ηで実装するのがベストなのでしょうか？ notion有料にすれば済む話？他の簡易ツールは無いでしょうか？」</p>
+</blockquote>
+</li>
+<li><strong>言葉の定義を早期に合わせる</strong>（例: 「要件定義」がスライド作成を指すのか大きな括りか、その場で確認）。</li>
+<li><strong>要件定義書の目的は「作るものがブレないこと」</strong>。目的が果たせればよく、バグ修正のような単純なケースはフォーマット厳守は不要。</li>
+<li><strong>テストケースは「何のテストか」「どのパターンか」が読んで分かる粒度を要求</strong>。「最大長のチェックなども必要です。」</li>
+<li><strong>テスト仕様書だけで品質は担保しきれない、と限界を明示</strong>。「各条件の設定の方法が正しいのか…と考えながらやると、テスト品質高まる」。</li>
+<li><strong>DB／テーブル設計のレビュー観点</strong>: NotNull 制約、enum で保存値を制限、index、ID の分離（システム用 ULID とユーザー表示用 code を別カラム）、制御項目を DB で持つかアプリで持つか。<blockquote>
+<p>「name系はNotNullが良い。statusなどenum系はDBとして保存できる値を制限した方が良い。idをULIDで…code的なユーザーに表示するカラムを用意すると良い。is_seidokuはDBの項目ではなくアプリケーションとして制御した方が良い。」</p>
+</blockquote>
+</li>
+<li><strong>同じ制御項目を複数箇所で持たせない</strong>。「同じ制御項目を複数箇所で管理すると、実装が大変になります」。</li>
+<li><strong>残課題／残論点は「何をもって残とするか」を明確にする</strong>（潰すべきものか、メモとして残すだけか）。</li>
+<li><strong>レビューの深度（どこまで見たか）を明示し、品質責任の所在をはっきりさせる</strong>。「ざっくりレビューですがApproveしました。項目の抜け漏れとか、条件とかがきちんとあっているなら問題ない」。</li>
+<li><strong>レビュー依頼前のセルフレビューを必須化</strong>（コーディングでも作業でも共通）。</li>
+<li><strong>顧客への質問前に清田を経由させ、技術的前提を整理してから問わせる</strong>。「お客さんに質問する前に私に確認するようにしてください。」</li>
+<li><strong>ソースコード品質はPJリスクの一面に過ぎない</strong>。要件定義・設計の妥当性、スケジュール管理、テスト品質の方がPJへの影響度が高い。<blockquote>
+<p>「システム的には汚くても動けば正義的なところはあるので、PJとしてのリスクという意味ではほんの一面にしかならないです。どちらかというと、要件定義や設計が妥当か、スケジュールの管理状況や、テストの品質の方が、PJへの影響度は高いと思います。」</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="_4">接する際の注意点（要件定義・設計編）</h2>
+<ul>
+<li><strong>方向性が固まる前に詳細仕様・スキーマを作り込まない</strong>。まず大枠と工数で意思決定を通す。</li>
+<li><strong>仕様書から曖昧語を消す</strong>。「有効期限切れ」「1年以上」などは値域・分岐・型まで具体化する。分岐は反対ケースも書く。</li>
+<li><strong>網羅性は複数経路で裏取りしてから出す</strong>。「全部見ました」では通らない。</li>
+<li><strong>テスト仕様書はケース名・パターン・境界値・権限・文字コードまで構造化する</strong>。</li>
+<li><strong>要件定義書と納品物・テスト仕様書の名称/内容を一致させる</strong>。ズレているなら顧客合意の有無を即答できるように。</li>
+<li><strong>スコープは実施対象と検討対象を分けて書く</strong>。安易に広げない。</li>
+<li><strong>顧客に質問する前に清田に技術前提を確認する</strong>。既存資産の活用余地を先に潰す。</li>
+<li><strong>指摘は仕組みで返す</strong>。WBS 管理・レビュー会・テンプレ化・カレンダーブロックなど再発しない仕組みを添える。</li>
+</ul>
+<h2 id="_5">データ不足（推測しない領域）</h2>
+<ul>
+<li><strong>API 設計</strong>（エンドポイント設計・契約・バージョニング）の体系的発言はほぼ観測されず。ファイル連携（SFTP / AWS Transfer Family）の議論が中心。</li>
+<li><strong>非機能要件の定量基準</strong>（性能SLA・レスポンスタイム・スループット）への具体言及なし。</li>
+<li><strong>受け入れ条件／完了条件（Acceptance Criteria）を単独で明示定義する発言</strong>は取得できず。スコープ／テスト仕様書経由で間接的に語られるのみ。</li>
+<li>DB 設計の濃い一次資料は社内システムA のスキーマレビュー1件に偏っており、案件側のテーブル設計議論はほぼヒットせず。</li>
+</ul>
+<h2 id="_6">関連メモリ</h2>
+<ul>
+<li>プロジェクト全体の進め方 → [[project-management]]</li>
+<li>抽象/具体の往復・PDCA → [[work-philosophy]]</li>
+<li>FB の書き方・トーン → [[feedback-style]]</li>
+<li>レビュー時の文体・口癖 → [[communication-style]]</li>
+</ul></article></div>
+<footer>このページは <code>requirements-and-design.md</code> から自動生成 — <a href="./summary.html">サマリへ戻る</a></footer>
+</body>
+</html>

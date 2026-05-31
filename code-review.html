@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コードレビュー・開発の進め方 — 清田 侑</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c2430;--muted:#5f6b7a;--line:#e6e9ee;--accent:#2f6f6b;--accent-soft:#e7f1f0;--shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .inner{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.topbar .home{font-weight:700;color:var(--accent);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);}
+.topbar .home:hover{background:var(--accent);color:#fff}
+.topbar .site{font-size:13px;color:var(--muted);white-space:nowrap}
+.pills{max-width:880px;margin:0 auto;padding:10px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pills a{font-size:12.5px;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.pills a:hover{border-color:var(--accent);color:var(--accent)}
+.pills a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:8px 20px 80px}
+.article{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:18px;box-shadow:var(--shadow);}
+.article h1{font-size:27px;margin:0 0 8px;border-bottom:2px solid var(--accent-soft);padding-bottom:12px}
+.article h2{font-size:19px;margin:34px 0 12px;color:var(--accent);border-left:4px solid var(--accent);padding-left:12px}
+.article h3{font-size:16px;margin:24px 0 8px}
+.article blockquote{margin:14px 0;padding:10px 16px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;color:#244f4c}
+.article code{background:#eef1f5;padding:2px 6px;border-radius:5px}
+.article pre{background:#1c2430;color:#e6e9ee;padding:16px 18px;border-radius:10px;overflow:auto}
+.article pre code{background:none;color:inherit;padding:0}
+.article table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.article th{background:var(--accent-soft);color:#244f4c}
+footer{max-width:880px;margin:26px auto 0;padding:0 20px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner">
+  <a class="home" href="./summary.html">← サマリへ戻る</a>
+  <span class="site">清田 侑・ブレインマップ</span>
+</div></div>
+<nav class="pills"><a href="./work-philosophy.html">仕事哲学</a>
+<a href="./communication-style.html">コミュニケーションスタイル・口癖</a>
+<a href="./feedback-style.html">フィードバックの書き方</a>
+<a href="./project-management.html">プロジェクトマネジメント</a>
+<a href="./requirements-and-design.html">要件定義・設計</a>
+<a href="./code-review.html" class="active">コードレビュー・開発の進め方</a>
+<a href="./people-development.html">人材育成</a>
+<a href="./evaluation-and-growth.html">評価制度・振り返り・PDCA運用</a>
+<a href="./ai-utilization.html">AI活用 / ツール戦略</a>
+<a href="./decision-making.html">意思決定パターン</a>
+<a href="./life-philosophy.html">人生哲学・心の御し方</a></nav>
+<div class="wrap"><article class="article"><h1 id="_1">コードレビュー・開発の進め方</h1>
+<p>清田が GitHub の PR レビューと Slack で見せる、<strong>ソースコードレビューの観点・指摘パターン</strong>と、<strong>開発の進め方（Git運用・テスト・本番運用・AI活用）</strong>。情報源は GitHub の PR レビュー履歴（omeroid org の各リポジトリ＋クライアントC の案件α周辺、2023–2026 の3年分。主に Go の社内システムA・C・D と、クライアントC の Nuxt/Vue + AWS Amplify GraphQL）と、Slack の各PJチャンネルの発言。重要度の高い「コア」を先頭に置く。</p>
+<blockquote>
+<p>仕様書・要件定義・テスト仕様書・DB設計など<strong>上流／設計のレビュー</strong>は別ファイル [[requirements-and-design]] に整理済み。本ファイルは<strong>実装コードのPRレビューと開発オペレーション</strong>に焦点を当てる。</p>
+</blockquote>
+<h2 id="_2">コア — レビューの基本姿勢（最重要）</h2>
+<blockquote>
+<p>高頻度・強い確信で一貫して観測される、清田のレビューを最も特徴づける姿勢。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>レビューの第一目的は「仕様を満たしているか」</strong>。ソースの良し悪しはその次。コードがどれだけ綺麗でも仕様を満たしていなければレビューを通す意味がない、という優先順位を明確に持つ。</li>
+<li><strong>GitHubの差分だけを見るのはレビューではない</strong>。diff 上で「変なことをしていない」の確認だけでは不十分。差分に現れない非実装箇所まで意識し、コード全体で横串の整合（既存ロジック・他箇所との一貫性）が取れているかを確認して初めてレビューと言える。<blockquote>
+<p>「単体PR・ソースレベルでOKでなく、全体として仕様を満たせてるか、他に抜け漏れがないかをまずチェックしなきゃいけない」</p>
+</blockquote>
+</li>
+<li><strong>「目で追って確認した気になる」のを最大の敵とみなし、1行ずつ読ませる</strong>。<blockquote>
+<p>「確認する時に、目で追って確認した気になっているのが原因だと思う」（被レビュー側の弁）に対し
+「はい。1行1行丁寧に読んでチェックしてください。」</p>
+</blockquote>
+</li>
+<li><strong>一度受けた指摘は二度と出させない（再発防止）</strong>。同じ指摘の繰り返しを強い警告として扱う。同一PR内の再発は仕組み（エディタ設定）で潰せと指示する。<blockquote>
+<p>「一度受けた指摘をきちんと覚えておくor漏れないようにメモるなどの対策をすることが大切です」
+「末尾の改行だけ入ってないファイルある。このPR内で何度も指摘しているので、ちゃんと確認するか、エディタの設定で防いでください。」</p>
+</blockquote>
+</li>
+<li><strong>指摘には必ず返信させ、対応有無を可視化させる</strong>。レビュアーが修正を追えない状態を嫌う。<blockquote>
+<p>「PRの私的には基本的にコメント返してもらえますか? どう対応したのかわからないので。簡易な指摘であれば修正しましたとか、doneとかだけでも大丈夫です。」</p>
+</blockquote>
+</li>
+<li><strong>「横串で修正してください」が口癖</strong>。指摘した1箇所だけでなく、同種のコード全てに直しを波及させる。</li>
+<li><strong>境界・エッジケースを先回りして問う</strong>。実データの動きを想像して破綻条件を突く。<blockquote>
+<p>「2mにしたら地面が2m以内だとずっと検知する？」「後から画像を変えたら保存済み座標どうなる？」</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="_3">レビュー指摘の頻出観点（コード）</h2>
+<blockquote>
+<p>コアの姿勢が具体的なコード指摘として現れるパターン。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>不要コード・デッドコード・コメント・余分な改行は必ず削除</strong>（彼の最頻出指摘）。<blockquote>
+<p>「これは使ってないかと思います。」「不使用なら削除」「余分な改行なくす」
+「またこのファイル入っちゃってます。」 — 認証鍵ファイル（<code>serviceAccount.json</code>）の誤コミット指摘</p>
+</blockquote>
+</li>
+<li><strong>層構造（usecase / repository / query / handler）を厳守させる</strong>。usecaseは薄く、modelは厚く。コントローラー層にロジックを載せない。<blockquote>
+<p>「useCaseは基本的に何もせず、model層のメソッドを呼び出すだけ」
+「handlerのファイルを分割している単位がわからないので、一つにまとめるか、パスごとに切った方が良さそうです。」
+「やるべきことのメソッドだけポンポンポン並んでるのが綺麗で読みやすい。ごちゃごちゃしてきたり極度に if が多いなと思ったら、本当にここに書くべき内容か考えた方がいい」</p>
+</blockquote>
+</li>
+<li><strong>1メソッド1責務／影響を閉じ込める</strong>。ある概念の余波を周辺メソッドが各々気にする実装を嫌う。<blockquote>
+<p>「1つのメソッドは基本1つのことしかやっちゃダメ。例えば"消防文言"という概念の余波を、他のメソッドABCが全部気にしながら実装するのはむずい。影響はそれを管理する関数・コンポーネントに閉じ込める」</p>
+</blockquote>
+</li>
+<li><strong>取得・整形はバックエンドに寄せる</strong>。フロントでの結合・整形は重くしUXを損なう。<blockquote>
+<p>「フロントで結合・整形するとフロントが重くなりUXが損なわれる。システム的な鉄則はバックエンドが頑張るスタイル」</p>
+</blockquote>
+</li>
+<li><strong>参照はコネクション（外部キー制約）で貼らせる</strong>。IDだけ持って自前突合する設計を嫌う。<blockquote>
+<p>「IDだけ持って自分で突合するロジックを書くとクエリ数が増え、これ合ってるのかという怪しさも出る」
+「（削除時の制約は）悪い挙動ではなく、不整合を防ぐ良い挙動。RDBの外部キー制約と同じ。使わないとAppSync/ORMの旨味が消える」</p>
+</blockquote>
+</li>
+<li><strong>呼び出し側に内部ロジックを意識させない</strong>。引数・前提が暗黙だと使う難易度が上がる。<blockquote>
+<p>「この変数の中身が何かを呼び出す側が把握してないと使えないメソッドは、使う難易度が上がる。特にJSは必要な変数が足りないのに呼んだ、というバグを生みやすい」</p>
+</blockquote>
+</li>
+<li><strong>DRY・集約を好む</strong>。既存ライブラリ・共通関数を優先し、同じことを何度も実装させない。<blockquote>
+<p>「個別にメソッド作るのではなく、〔別案件のコード〕みたいにGetならGetでメソッドまとめた方が好みです。」
+「書いた場所は全部テストで確かめる必要があるので、書けば書くほど煩わしさを伴う。共通関数を使った方がいい。同じことは何回も実装しない」</p>
+</blockquote>
+</li>
+<li><strong>命名規約を言語ごとに使い分けさせる</strong>。<blockquote>
+<p>「goの引数はキャメルケースで書くことが多いです。」「indicatorCategoryId → indicatorCategoryID」（Goの頭字語は大文字）
+「スネークケースが正しいです。」 — APIフィールド（snake_case）とGo（camelCase）を区別</p>
+</blockquote>
+</li>
+<li><strong>コードは意味を理解して使わせる</strong>。検索で出たコードを意味も分からず貼るのを戒める。<blockquote>
+<p>「出てきて使うのは悪くないけど、意味分かってないのに使うのはやめた方がいい」</p>
+</blockquote>
+</li>
+<li><strong>実データの使われ方からエッジケースを推論する</strong>。<blockquote>
+<p>「後から入力忘れで、順序が逆転することがあるので、前後チェックより、重複してないチェックのほうが良い」
+「これそのカレンダーの期間中のプロジェクトだけ取得できてますか？なんか全部取得していそうに見えました。」</p>
+</blockquote>
+</li>
+<li><strong>設定・秘匿情報・デプロイ安全性</strong>。ハードコードと秘匿情報コミットを許さない。<blockquote>
+<p>「これはこのままだとデプロイできないので、環境変数から取得した方が良さそうです。」
+「ローカルなら*で良いですが、デプロイ環境はちゃんと絞りたいですね。」（CORS）
+秘匿情報がコミットされた際は <code>git reset</code> + force push での履歴抹消まで指示する</p>
+</blockquote>
+</li>
+<li><strong>データの持ち方の改善も提案する</strong>（ただしテスト・修正コストを見て現状維持を選ぶ判断もする）。<blockquote>
+<p>「ちょっとそこまで直すとテストが大変なので一旦いっか」</p>
+</blockquote>
+</li>
+<li><strong>テストの抜けを指摘する</strong>（粒度は別ファイルのテスト仕様レビューを参照）。「Getのテストがないです。」</li>
+</ul>
+<h2 id="vuenuxt">フロントエンド（Vue/Nuxt）でのレビュー観点</h2>
+<blockquote>
+<p>補助的なパターン（クライアントC の Nuxt/Vue + AWS Amplify GraphQL 案件で観測）。Go 側の観点（層分離・命名・不要コード・エラー層・横串）がフロントでもそのまま現れ、加えて以下が特徴。</p>
+</blockquote>
+<ul>
+<li><strong>永続化・データ処理は composable（repository層）に切り出させる</strong>。ページ/コンポーネントに DB 処理を直書きさせない。UI内のロジックは表示の出し分けのみ。<blockquote>
+<p>「基本的に永続化処理（repository層）は別ファイルに切り出しましょう。」
+「UIから直接GraphQL/APIを呼ばず、リポジトリ層相当はコンポーザブルに分ける。バックエンドで言うとコントローラーに全部書いてるのと同じになっちゃう」</p>
+</blockquote>
+</li>
+<li><strong>ロジックは「概念的に正しい場所」に置かせる</strong>（フロント版の「横串」）。</li>
+<li><strong>整形はデータ取得元で行わせ、後付けの再整形を避ける</strong>。複数オブジェクトのこね回しは「難読化」と呼んで戒める（がコスト次第で条件付き許容）。<blockquote>
+<p>「二つのオブジェクトから整形するというのは処理が複雑になりがちなので、難読化します。…元々のデータ取得時に詰めて返してあげればスッキリします。…が、今回はこれで良いです。」</p>
+</blockquote>
+</li>
+<li><strong>命名の正確さ（フロントでも頻出）</strong>。語の意味と実装を一致させる。<blockquote>
+<p>「同期ではないので、syncという単語は不適切かと思います。普通にcreateとかでよさそうです」
+「saveってあまり使いませんね。…普通にaddで良いかと思います」
+「アッパースネークケースは定数の書き方なので、あまり慣習的ではないですね」</p>
+</blockquote>
+</li>
+<li><strong>エラーは正しい層で扱わせる</strong>。「このファイル内でerrorをもみ消すのは微妙で、呼び出し元で処理したほうが良さそうです。」</li>
+<li><strong>勝手な値の変更（暗黙のミューテーション）に違和感を表明する</strong>。「値のトリミングって何のためにやってます？」</li>
+<li><strong>冗長な分岐・重複構造を削らせる／チェーン・ワンライナーを重ねさせない</strong>。「map に map を重ねると分からなくなる。ワンライナーで返そうとせず変数に代入して分割」。</li>
+<li><strong>コメントは現行コードと一致させる</strong>。古いコメントは書き換え/削除させる。</li>
+<li><strong>スキーマ・権限（Amplify GraphQL の @auth）を実利用者の動きと突き合わせて検証</strong>。「店舗の人がアップロードするので、ReadOnlyAccessにもcreate等の権限が必要そうです。」</li>
+<li><strong>CSS・アクセシビリティ・パフォーマンスの細かい指摘は彼からはほぼ出ない</strong>（スタイル nits は別レビュアー）。関心は一貫してアーキテクチャ・命名・データ層の正しさ・エラーハンドリング。</li>
+</ul>
+<h3 id="_4">型・状態管理（フロント）の規律</h3>
+<ul>
+<li><strong><code>any</code> 型を禁止する</strong>。「正しい型定義があれば any なしで取れるはず」。</li>
+<li><strong>型定義外プロパティの動的追加を禁ずる</strong>（型崩れ）。「中身に何が入ってるか分からなくなる」。</li>
+<li><strong>二重管理（ダブルメンテ）を排除する</strong>。他変数から導出できる値は独立 state にせず computed/算出に。「変更タイミングが同じなら変数は1つに統合。2変数ある以上それ以上持ちたくない」。</li>
+<li><strong>変数の所有権を守らせる</strong>。外部からの直接書き換えはNG、セッター経由にさせる。</li>
+<li><strong>Vue の watch 多用を避けさせる</strong>。「props はライフサイクルが走るのに watch すると二重監視で画面が重い。setup で初回呼び＋onUpdated で再実行」。</li>
+</ul>
+<h2 id="_5">レビューのトーンと言い回し</h2>
+<ul>
+<li><strong>柔らかく、しかし断定的</strong>。ブロッカーは素の命令形（「修正お願いします」「validationを行ってください。」）、それ以外は「〜が良さそうです」「〜の方が良い」「〜かと思います」で包む。</li>
+<li><strong>GitHubの <code>suggestion</code> ブロックで正解コードをそのまま渡す</strong>ことが多い（指摘＝丸投げにしない）。</li>
+<li><strong>断定せず問いで気づかせる</strong>。「これ定義する意味ありますか？」「消した意図はありますか？」。</li>
+<li><strong>既存の負債は自分の責任として引き受ける</strong>。「（元のソースが悪いですが）」「（これも元からで申し訳ないですが）」。</li>
+<li><strong>指摘には「なぜ」を箇条書きで添えて教える</strong>。</li>
+<li><strong>「必須の指摘」と「個人の好み」を明示的に区別する</strong>。好みはブロックせずコメントのみ。<blockquote>
+<p>「本当は…が好きですが、個人的な好みもあるので、コメントのみにしておきます。」
+「ちょっと長いですが、愚直にこうしましょう。」 — 命名は短さより分かりやすさを取る</p>
+</blockquote>
+</li>
+<li><strong>性能が拮抗するなら可読性を取る</strong>。「読みにくい＝バグを生みやすい」。</li>
+<li><strong>自分の不確かさを率直に開示してから方向性を示す</strong>。「ちょっと嘘言ってたらごめんなさい」（→ [[communication-style]]）。</li>
+<li><strong>絵文字はほぼ使わない</strong>。Approve は素っ気なく「LGTM👍」が定型。<strong>条件付きApprove</strong>を多用。<blockquote>
+<p>「Approveしましたが、修正あるので、それだけ対応してからマージしてください。」</p>
+</blockquote>
+</li>
+<li>英語の <code>nits:</code> / <code>must:</code> のような重大度プレフィクスは使わず、<strong>重大度は言い回しで伝える</strong>。</li>
+</ul>
+<h2 id="gitpr">Git・PR運用の標準</h2>
+<ul>
+<li><strong>mainブランチを2回取り込む</strong>：開発前（ブランチを切る前）と、PRを出す前（プッシュ前）。後からのコンフリクト手戻りを避け、CI のテストを最新main相手に走らせるため。</li>
+<li><strong>feature → feature のマージを避ける</strong>（squashでコミットが潰れコンフリクトの原因に）。</li>
+<li><strong>PRは小さく</strong>（レビューコスト最優先）。「PR大きすぎて、レビューコストが高すぎるので、いったんマージして、気づいた時にリファクタしましょう。」</li>
+<li><strong>作業は一つずつ終わらせる</strong>。</li>
+<li><strong>ブランチのベースを必ず確認</strong>（頻出の取りこぼし）。「ブランチがdevelopに向いてました。mainが正しいです。」</li>
+<li><strong>CIでビルドを必ず通す</strong>。</li>
+</ul>
+<h2 id="_6">テストの考え方（実行・運用面）</h2>
+<ul>
+<li><strong>業務フローを端から端まで通す</strong>。1ステップだけのテストを認めない。案件βでは「見積もり→受注→発注→入荷→出荷→検収→月締めがひとまとまり」と一連を要求。</li>
+<li><strong>シナリオテストはバグゼロが前提</strong>（顧客の最終確認だから）。バグチェック／モンキーテストとは区別する。</li>
+<li><strong>ハッピーパスだけでなくネガティブチェックを要求</strong>。</li>
+<li><strong>テストコードの依存・安全性も見る</strong>。前のテストに依存する構成、本番DBを操作しうるテストサーバ、SQL直書きを保守性・安全性リスクとして指摘。「万が一本番で使われたらDB何でも操作できちゃうので怖い」。</li>
+<li>詳細なテスト仕様書のレビュー観点は [[requirements-and-design]] を参照。</li>
+</ul>
+<h2 id="_7">本番・運用・インフラの規律</h2>
+<ul>
+<li><strong>本番は気軽に触らせない</strong>。マージ・操作の権限を明確にゲートする。「本番に対する意識あらためてください。気軽に操作して良いものではないです。」</li>
+<li><strong>dev=本番の状態にしてから確認させる</strong>。「develop=prdの状態にしておかないと…チェックできていないバグを踏むリスクが高まります」。</li>
+<li><strong>デプロイ済みのものへの破壊的変更を禁ずる</strong>。</li>
+<li><strong>障害報告は事象でなく原因を書かせる</strong>。タイムスタンプ付きの証跡と、原因／補足／調査内容／一時対応／恒久対応の構造で詰める。<blockquote>
+<p>「話しているのは事象であって、原因が書かれてないため、変更内容が妥当かの判断がこの情報だけだとつかない」</p>
+</blockquote>
+</li>
+<li>マネージド基盤の運用ルールを恒久化する（例：「作成したリソースを管理コンソールから更新してはいけない」）。</li>
+</ul>
+<h2 id="_8">接する際の注意点（コードレビュー・開発編）</h2>
+<ul>
+<li><strong>PRを出す前に自分で1行ずつ読む</strong>。機械的ミスはエディタ設定／フォーマッタで根絶する。</li>
+<li><strong>一度受けた指摘は記録して二度と出さない</strong>。</li>
+<li><strong>指摘には必ず返信する</strong>（「done」「修正しました」だけでも可）。</li>
+<li><strong>指摘は横串で直す</strong>。1箇所直して終わりにしない。</li>
+<li><strong>ロジック・整形はデータ取得元／正しい層に置く</strong>。後付けの再整形（=「難読化」）を避ける。フロントなら永続化処理は composable に切り出す。</li>
+<li><strong>命名は意味と一致させる</strong>（sync/save/add の誤用、ケースの不統一に注意）。</li>
+<li><strong>mainを2回取り込む（ブランチ前・PR前）、PRは小さく、ブランチのベースを確認</strong>。</li>
+<li><strong>本番には気軽に触らない</strong>。dev=本番にしてからテストする。</li>
+<li><strong>障害は「事象」でなく「原因」まで突き止めて報告する</strong>。</li>
+</ul>
+<h2 id="_9">データ不足（推測しない領域）</h2>
+<ul>
+<li>コードレビューは <strong>Go が最も深く</strong>、次いで <strong>Nuxt/Vue フロント</strong>でも活発。<strong>Elixir</strong> には本人レビューがほぼ無く未収集。</li>
+<li><strong>CSS・アクセシビリティ・パフォーマンスの細かい指摘は本人からはほぼ出ない</strong>。アーキテクチャ・命名・データ層・エラーハンドリング・型の健全さ（any禁止・型崩れ防止）・状態管理に集中する。</li>
+<li><strong>セキュリティ観点の自前の指摘は限定的</strong>（CORS絞り込み・秘匿情報の非コミット・環境変数化・Amplify の権限確認が中心）。体系的なセキュリティレビューは自動化AIチェックリスト側に寄っている。</li>
+<li><strong>パフォーマンス/N+1の直接指摘は少ない</strong>。性能懸念はタイムアウト・ページネーション・ORDER BY安定性といった間接的な形で現れる。</li>
+<li><strong>ユニットテスト／テストピラミッド／TDDの哲学</strong>はあまり語られない。シナリオ/結合/手動テストの比重が高い。</li>
+<li>命名規約・可読性・技術的負債を<strong>抽象概念として論じる発言はほぼなく</strong>、具体的なPR指摘として現れる。</li>
+</ul>
+<h2 id="_10">関連メモリ</h2>
+<ul>
+<li>要件定義・仕様書・テスト仕様・DB設計のレビュー → [[requirements-and-design]]</li>
+<li>レビュー時の文体・口癖・前置き → [[communication-style]]</li>
+<li>指摘の再発防止・信頼貯金・「仕組みで解決」 → [[work-philosophy]]</li>
+<li>育成としてのレビュー（ジュニアの伸ばし方） → [[people-development]]</li>
+<li>PJ全体の進め方・レビュー会の仕組み化 → [[project-management]]</li>
+</ul></article></div>
+<footer>このページは <code>code-review.md</code> から自動生成 — <a href="./summary.html">サマリへ戻る</a></footer>
+</body>
+</html>

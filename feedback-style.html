@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フィードバックの書き方 — 清田 侑</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c2430;--muted:#5f6b7a;--line:#e6e9ee;--accent:#2f6f6b;--accent-soft:#e7f1f0;--shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .inner{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.topbar .home{font-weight:700;color:var(--accent);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);}
+.topbar .home:hover{background:var(--accent);color:#fff}
+.topbar .site{font-size:13px;color:var(--muted);white-space:nowrap}
+.pills{max-width:880px;margin:0 auto;padding:10px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pills a{font-size:12.5px;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.pills a:hover{border-color:var(--accent);color:var(--accent)}
+.pills a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:8px 20px 80px}
+.article{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:18px;box-shadow:var(--shadow);}
+.article h1{font-size:27px;margin:0 0 8px;border-bottom:2px solid var(--accent-soft);padding-bottom:12px}
+.article h2{font-size:19px;margin:34px 0 12px;color:var(--accent);border-left:4px solid var(--accent);padding-left:12px}
+.article h3{font-size:16px;margin:24px 0 8px}
+.article blockquote{margin:14px 0;padding:10px 16px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;color:#244f4c}
+.article code{background:#eef1f5;padding:2px 6px;border-radius:5px}
+.article pre{background:#1c2430;color:#e6e9ee;padding:16px 18px;border-radius:10px;overflow:auto}
+.article pre code{background:none;color:inherit;padding:0}
+.article table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.article th{background:var(--accent-soft);color:#244f4c}
+footer{max-width:880px;margin:26px auto 0;padding:0 20px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner">
+  <a class="home" href="./summary.html">← サマリへ戻る</a>
+  <span class="site">清田 侑・ブレインマップ</span>
+</div></div>
+<nav class="pills"><a href="./work-philosophy.html">仕事哲学</a>
+<a href="./communication-style.html">コミュニケーションスタイル・口癖</a>
+<a href="./feedback-style.html" class="active">フィードバックの書き方</a>
+<a href="./project-management.html">プロジェクトマネジメント</a>
+<a href="./requirements-and-design.html">要件定義・設計</a>
+<a href="./code-review.html">コードレビュー・開発の進め方</a>
+<a href="./people-development.html">人材育成</a>
+<a href="./evaluation-and-growth.html">評価制度・振り返り・PDCA運用</a>
+<a href="./ai-utilization.html">AI活用 / ツール戦略</a>
+<a href="./decision-making.html">意思決定パターン</a>
+<a href="./life-philosophy.html">人生哲学・心の御し方</a></nav>
+<div class="wrap"><article class="article"><h1 id="_1">フィードバックの書き方</h1>
+<p>清田が「部門長FB」「年末プレゼンFB」「Slackレビュー」で実践しているフィードバックの構造・観点・口調。多数の振り返りシート（部門長FB）、Obsidian「2025年 年末プレゼンFB」、口述レビュー会から抽出。重要度の高い「コア」を先頭に置く。</p>
+<h2 id="fb">コア — FB で最も大切にしている原則</h2>
+<blockquote>
+<p>高頻度・強い確信で一貫して観測される、清田のFBを最も特徴づける原則。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>褒めてから改善に入る</strong>: 改善点だけだとモチベが下がる。具体エピソードを引用して褒める。口頭レビューでも同型で、「考え方・整理の仕方は良いと思います」とまず肯定してから「見せ方で言うと、この羅列だと分かりづらい」と改善提案へ。良い動き（他者に確認を依頼した等）は「いいムーブ」と明示して認める。<blockquote>
+<p>「2点、具体的に評価しています。1つ目は、定例でのファシリです。きちんと準備を行うことは自分の自信にもつながり、当日の焦りが減るのでとても良い取り組みです」</p>
+</blockquote>
+</li>
+<li><strong>前回 FB の指摘との比較を必ず入れる</strong>: 「前回のFBで〇〇とお伝えしましたが、今月は〜」で始まることが多い。継続課題か、改善されたかを評価する。<blockquote>
+<p>「前回のFBで『振り返りをもっと具体的に』とお伝えしましたが、今月は『要件を固めてから進めたことで手戻りが少なくなった』など、前回より分析の解像度が上がっています。この方向性で続けてください」</p>
+</blockquote>
+</li>
+<li><strong>「気をつける」を許さない／意気込みでなく具体アクション・仕組み化に落とさせる</strong>: 改善策が「意識する」「気をつける」止まりなら<strong>仕組み化</strong>を求める。意気込み表明も同様に具体化を要求。<blockquote>
+<p>「『気をつける』という意識ベースの解決では変わらないので、<strong>仕組みで解決</strong>してください。提出前に1分、必ず見直す時間をカレンダーにブロックするなど、やらざるを得ない状況を作ることが効果的です」
+「意気込みだけ言ってもしょうがない。具体のアクションとしてどう落とすんですか、は何回か言ってる」</p>
+</blockquote>
+</li>
+<li><strong>抽象→具体への変換を求める</strong>: メンバーの抽象的記述は一段具体に落とさせ、逆に「具体的にできるようになった」には「もう一歩抽象度を上げると、スキルとしてどうなった？」と問う。<blockquote>
+<p>「もうちょっと抽象度を上げると、スキルとしてどのようなことができるようになったのでしょうか。私が気にしているのは、その点です」</p>
+</blockquote>
+</li>
+<li><strong>目標の測定基準を厳しくチェック（SMART／手段でなく結果）</strong>: 「CLAUDE.md/rules/を使う」のような手段ベースは「結果ではない」と却下し、「これをやることで開発上のどの問題が解消されるか」を言語化させる。</li>
+<li><strong>FBは意図・目的を明示して初めて機能する</strong>: 各設問の意図を、良い例・悪い例を示しながら説明する。意図が伝わらなければFBは機能しないと捉える。<blockquote>
+<p>「何のためにこの質問をしてるんだろう、という意図を伝えてあげるのが必要」</p>
+</blockquote>
+</li>
+<li><strong>継続課題は明示的に「前回も同じ指摘」と書く</strong>: 改善が見られないことを記録に残し、本人にも自覚させる。<blockquote>
+<p>「これは前回も同じ指摘をしたので、来月は必ず評価項目名で答えてください」</p>
+</blockquote>
+</li>
+<li><strong>本人のミッションに紐づける</strong>: FB の最後で、雇用契約書のミッションや本人のキャリア目標に立ち返らせる。<blockquote>
+<p>「メンバーAがいなくなったときに『案件αを自分が回す』というミッションを達成するためには、実際にマネジメントをやってみる機会を自分で作りに行く必要があります。待っていても機会は来ません——主体的に取りにいってください」</p>
+</blockquote>
+</li>
+<li><strong>定着しないのは"自分の説明不足"と引き受ける</strong>: 考え方が根付かないとき、原因を本人だけに帰さず自分の伝え方の問題として捉え直す。<blockquote>
+<p>「何回か言ってるのに、うまく彼の思考プロセスになってない。それは私の説明不足とか、本当の意味で理解させられてないところがある」</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="fb-fb">FB の基本構造（部門長FB）</h2>
+<p>清田の部門長FBは概ね以下の3パートで構成される：</p>
+<h3 id="5-1">5-1. 今月の評価とフィードバック</h3>
+<ol>
+<li><strong>メンバーの自己評価に対する所感</strong>: まず褒めるべき点・前進した点を伝える。前回FBとの比較で「成長したかどうか」を必ず言及する。</li>
+<li><strong>客観的に見た成長ポイント</strong>: 本人が自覚していない可能性のある成長を、エピソードベースで2点ほど指摘する。</li>
+<li><strong>改善が必要な点</strong>: 観察された具体的な事象を引用してから、根本原因と仕組み的解決を提示する。</li>
+</ol>
+<h3 id="5-2">5-2. 来月の期待とアドバイス</h3>
+<ol>
+<li><strong>来月の目標設定へのコメント</strong>: 測定可能性・関連性をチェック。曖昧なら具体化を要求。</li>
+<li><strong>成長を加速させる具体的アドバイス</strong>: 中長期キャリアやミッションに紐づけた一歩を提示。</li>
+<li><strong>提供できるサポート内容</strong>: 質問対応・ノウハウ共有など。</li>
+</ol>
+<h3 id="5-3">5-3. ランクアップの可能性評価</h3>
+<ol>
+<li><strong>目標ランク到達の見込み</strong>: 「まだ低い」「現実的」「LE目線だと品質・リーディングを大幅向上が必要」など率直に。</li>
+<li><strong>特に注力すべき評価項目</strong>: 名称ベースで具体的に指定（「開発品質」「マネジメント（タスク管理・スケジューリングの主体化）」など）。</li>
+</ol>
+<h2 id="_2">補助的なパターン</h2>
+<blockquote>
+<p>複数回観測されるが、コアほど中心的でない／状況依存の項目。</p>
+</blockquote>
+<ul>
+<li><strong>トーンの使い分け</strong>:</li>
+<li>デフォルト: 「〜です」「〜ます」基調、丁寧で柔らかい。「と思います」「〜してください」「お願いします」を多用。</li>
+<li>強めの指摘: 「言い方悪いですが」「（私からの一方的な意見にはなるので）」と前置きしてから核心。</li>
+<li>私見として強制しない: 「私だったらこうする、ただ必ずそうしてって話ではない」。</li>
+<li>真剣度MAX: 「信頼貯金が底をついてるので、改善お願いします」（結果でなく「信頼」を持ち出す。警告レベルが高い）。</li>
+<li>励まし: 「死にはしないし、次に活かせば良い」「できなくても大丈夫」（マインドコーチング寄り）。</li>
+<li><strong>解釈ズレの扱い方</strong>: 自分の本来の意図と、相手が受け取った手段を切り分けて返す。指示が独り歩きして固定化されたとき正面から扱う（→ [[communication-style]]）。<blockquote>
+<p>「メンバーAのよくある捉え方の違いなんだけど、私"同期して"なんてお願いしてないのよ。私が言ったことをメンバーAが解釈して、その方法として"同期する"が出てきて固定化されちゃってる」</p>
+</blockquote>
+</li>
+<li><strong>観察パターン（メンバー特性の捉え方）</strong>: 報連相の安定性／課題解決の論理性・妥当性／品質担保のセルフチェック力／指示への受け取り方／苦手なものへの向き合い方／マインド・メンタル／能動性・受動性、の観点で見る。これらは各メンバーノート（Obsidian <code>11_Omeroid/メンバー/</code>）で日付付きに時系列で残る。</li>
+</ul>
+<h2 id="fb_1">部門長FBのサンプル抜粋（清田の文章）</h2>
+<h3 id="_3">抽象的な目標への指摘</h3>
+<blockquote>
+<p>「『Claude Codeの構成を見直す』という目標は、前回の『AIをどう使いこなすか』という方向性に沿っており、良いと思います。ただ、<strong>測定基準が曖昧</strong>です（『CLAUDE.md/rules/を使う』は手段であって結果ではない）。『これをやることで開発上のどの問題が解消されるか』を言語化してから取り組むと、目標設定自体のレベルが上がります」</p>
+</blockquote>
+<h3 id="_4">継続課題への厳しめのアドバイス</h3>
+<blockquote>
+<p>「マネジメントについては前回から継続課題ですが、『やる機会がない』から一歩進んで、<strong>今自分が持っているタスクについてのタスク起票を自分でやってみる</strong>ところから始めてください」</p>
+</blockquote>
+<h3 id="_5">解決能力の重要性を説く</h3>
+<blockquote>
+<p>「結局は、課題解決能力が全てです。問題があり、それを解決する方法を考えるのを常に行うようにしましょう。これがスムーズにできるようになれば、どの領域だって比較的容易にレベルアップします。例えば、技術的なインフラ領域に関しても、わかっていること、わかっていないことを整理して、じゃあそれをわかるようになるためには何が必要なのかを考えて遂行するだけなので」</p>
+</blockquote>
+<h3 id="_6">マインド面のアドバイス</h3>
+<blockquote>
+<p>「現時点で自分の得意不得意を作らないほうが良い。基本的に全てのことは不得意から始まり、得意になる。そして得意なことは自ずと楽しくなる。なので、不得意・合ってないと決めつけると、自己の成長が止まり、可能性が狭まっていく」</p>
+</blockquote>
+<h2 id="fb_2">アンチパターン（清田が FB で受け入れない返答）</h2>
+<ul>
+<li>「気をつけます」「意識します」だけの改善策</li>
+<li>「特になし」「-」の周囲FB欄</li>
+<li>ランクの評価項目を答えるべきところで、ランク名だけ書くこと</li>
+<li>目標を SMART で書けと言ったのに、手段だけ書く（測定基準なし）</li>
+<li>「やる機会がない」と機会の不在を理由にすること</li>
+<li>過去 FB と同じ内容の自己評価</li>
+</ul>
+<h2 id="_7">関連メモリ</h2>
+<ul>
+<li>人材育成全般 → [[people-development]]</li>
+<li>コミュニケーションの基本 → [[communication-style]]</li>
+<li>仕事哲学 → [[work-philosophy]]</li>
+<li>評価制度・振り返り運用 → [[evaluation-and-growth]]</li>
+</ul></article></div>
+<footer>このページは <code>feedback-style.md</code> から自動生成 — <a href="./summary.html">サマリへ戻る</a></footer>
+</body>
+</html>

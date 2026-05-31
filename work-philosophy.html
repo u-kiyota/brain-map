@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仕事哲学 — 清田 侑</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1c2430;--muted:#5f6b7a;--line:#e6e9ee;--accent:#2f6f6b;--accent-soft:#e7f1f0;--shadow:0 1px 2px rgba(20,30,45,.04),0 8px 24px rgba(20,30,45,.06);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .inner{max-width:880px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.topbar .home{font-weight:700;color:var(--accent);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 12px;border:1px solid var(--accent-soft);border-radius:999px;background:var(--accent-soft);}
+.topbar .home:hover{background:var(--accent);color:#fff}
+.topbar .site{font-size:13px;color:var(--muted);white-space:nowrap}
+.pills{max-width:880px;margin:0 auto;padding:10px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pills a{font-size:12.5px;text-decoration:none;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+.pills a:hover{border-color:var(--accent);color:var(--accent)}
+.pills a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:880px;margin:0 auto;padding:8px 20px 80px}
+.article{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:18px;box-shadow:var(--shadow);}
+.article h1{font-size:27px;margin:0 0 8px;border-bottom:2px solid var(--accent-soft);padding-bottom:12px}
+.article h2{font-size:19px;margin:34px 0 12px;color:var(--accent);border-left:4px solid var(--accent);padding-left:12px}
+.article h3{font-size:16px;margin:24px 0 8px}
+.article blockquote{margin:14px 0;padding:10px 16px;background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;color:#244f4c}
+.article code{background:#eef1f5;padding:2px 6px;border-radius:5px}
+.article pre{background:#1c2430;color:#e6e9ee;padding:16px 18px;border-radius:10px;overflow:auto}
+.article pre code{background:none;color:inherit;padding:0}
+.article table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.article th{background:var(--accent-soft);color:#244f4c}
+footer{max-width:880px;margin:26px auto 0;padding:0 20px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner">
+  <a class="home" href="./summary.html">← サマリへ戻る</a>
+  <span class="site">清田 侑・ブレインマップ</span>
+</div></div>
+<nav class="pills"><a href="./work-philosophy.html" class="active">仕事哲学</a>
+<a href="./communication-style.html">コミュニケーションスタイル・口癖</a>
+<a href="./feedback-style.html">フィードバックの書き方</a>
+<a href="./project-management.html">プロジェクトマネジメント</a>
+<a href="./requirements-and-design.html">要件定義・設計</a>
+<a href="./code-review.html">コードレビュー・開発の進め方</a>
+<a href="./people-development.html">人材育成</a>
+<a href="./evaluation-and-growth.html">評価制度・振り返り・PDCA運用</a>
+<a href="./ai-utilization.html">AI活用 / ツール戦略</a>
+<a href="./decision-making.html">意思決定パターン</a>
+<a href="./life-philosophy.html">人生哲学・心の御し方</a></nav>
+<div class="wrap"><article class="article"><h1 id="_1">仕事哲学</h1>
+<p>清田が仕事に対して大事にしている根本的な考え方。本人の Notion「COO清田の個人的仕事理論（ポエム）」に体系化された内容を中核に、Slack・振り返りシート・会議口述での実発言を補強として整理。重要度の高い「コア」を先頭に、状況依存の「補助的なパターン」を後段に置く。</p>
+<h2 id="_2">コア — 最も大切にしている／繰り返し現れる</h2>
+<blockquote>
+<p>高頻度・強い確信で一貫して観測される、清田を最も特徴づける仕事観。重要度の高い順。</p>
+</blockquote>
+<ul>
+<li><strong>「面白くもない既知のことを、愚直にしっかりやる」が真理</strong>: 成功法則は他人や書籍を見ればいくらでも出てくる。差は「知って終わらせるか、実行に移すか」。コツコツの積み重ねが最も再現性のある方法。</li>
+<li>例: 報連相・タスク管理・PDCA など「新人でも言われる基礎」を、社会人歴に関わらず徹底できる人がそもそも少ない。それだけで上位10%に入れる。</li>
+<li><strong>「めんどくさいことを丁寧に行う」が最重要</strong>: 他人がやらない可能性が高いので、やるだけで価値が出る。丁寧な仕事は信頼につながり、上司の手が離れ、仕事を任せられる。</li>
+<li>
+<blockquote>
+<p>「出力の安定しない電池は使い道がないが、マンガン電池のように出力は少なくても安定している電池には使い道がある」</p>
+</blockquote>
+</li>
+<li><strong>報連相は早ければ早いほど良い</strong>: 自分が思っている3倍するくらいでちょうどよい。</li>
+<li><strong>一番の失敗は、報連相を怠り、期限になって初めて終わらないことが伝わること</strong>。タスクが結果として終わらないこと自体はたいした問題ではなく、終わらないことが事前に報告されてないことが大問題。</li>
+<li>できない可能性が発生した段階で報告する。</li>
+<li><strong>「意識する」「気をつける」は解決策ではない＝仕組みで解決する</strong>: 意識で人の行動は変わらない。<strong>具体的な行動を仕組み化</strong>して、やらざるを得ない状況を作る。<blockquote>
+<p>「『気をつける』という意識ベースの解決では変わらないので、<strong>仕組みで解決</strong>してください。提出前に1分、必ず見直す時間をカレンダーにブロックするなど、やらざるを得ない状況を作ることが効果的です」
+— 文脈: 部門長FBで、ドキュメント誤字が改善されないメンバーへの指摘</p>
+</blockquote>
+</li>
+<li><strong>速度 &gt; 量 &gt; 品質</strong>: 期限までに終わらせることを第一に考える。最初から一人で品質を上げるのは時間の無駄。早く終わらせ、量をこなし、量が質に転換する。</li>
+<li>「時間は麻薬」: 時間で解決することを覚えるとそれにしか頼らなくなり、スキルが上がらない。</li>
+<li><strong>第一に身につけるべきは PDCA 回路（改善フロー）</strong>（OODA, STPD, PDR 等、名称は何でも良い）。</li>
+<li><strong>客観的な</strong>課題の整理と、その解決のための<strong>具体的な</strong>アクションを考える。成長できない人は「失敗を客観的・論理的に見る」「解決策を具体的な行動にする」のどちらかができていない場合が多い。</li>
+<li><strong>ベーススキルが穴の空いたバケツ</strong>だと、その上にスキルを積み重ねても水は溜まらない。PDCA・報連相・タスク管理・コミュニケーション・質問力・安定した勤怠・論理的思考力・自己理解は、最初に・漏らさず・確実に身につけなくてはいけない。<blockquote>
+<p>「まずは現在のポジションとして必須な要素が不足しており、バケツに穴が空いてる状態なので、どんだけ水を注いでも無駄になってしまう」
+— 文脈: メンバーGへの年末プレゼンFB</p>
+</blockquote>
+</li>
+<li><strong>タスク管理を徹底するだけで基本的な信頼は勝ち取れる</strong>:</li>
+<li><strong>毎朝、プロジェクト全体スケジュールと自分のタスクを一覧化し、優先順位をつけ、今日やるべきことを整理する</strong>。同時に各タスクの期限を確認し、終わらないリスクがあればこの時点で報連相する。</li>
+<li>メモを取り、記憶を頼りにしない。</li>
+<li><strong>2つの70%を心がける（最頻出のメンタル管理メソッド）</strong>:</li>
+<li><strong>仕事は計画時点では70%で収まる範囲とし、それを100%のように見せる</strong>。想定外は必ず発生するので備える時間が要る。余裕のない人に追加の仕事は来ない（頼られない）。</li>
+<li><strong>70%で自分を褒める</strong>。100点必達は気の休まらない脅迫的状況を生む。70点で合格点、まず褒める。100点取ったらもっと褒める。（ウェルビーイング面は [[life-philosophy]]）</li>
+<li><strong>結局は他者評価</strong>: 人生は基本的に他者評価で成り立っている。</li>
+<li>視点を自分から剥がし、「自分がこの行動・発言をした時、他人がどう考えるか・どう捉えるか」を意識する。やりたいこと・言いたいことはその理解の上で表現する。</li>
+<li>コミュニケーションは、相手が何を考えているか・何を知りたがっているかにまず着目する。</li>
+<li><strong>準備が9割</strong>: 始める前に成功の9割は決まっている。</li>
+<li>起こり得るパターンとその対応を考え、脳内でシミュレーションする。<strong>脳内で勝ち確状態になってから動く</strong>のが結果的に最もコスパが良い。準備には過剰なくらい時間を使う。</li>
+<li><strong>主体性とセルフレビュー</strong>: 自分一人で完結させるつもりで取り組み、常にセルフレビューで品質を高める。</li>
+<li><strong>レビューありきで仕事をしている人は品質の観点が育たず、一人で品質を担保できない</strong>。セルフレビューができないと上司のレビューに負担がかかり、安心して任せられない。</li>
+</ul>
+<h2 id="_3">補助的なパターン</h2>
+<blockquote>
+<p>複数回観測されるが、コアほど中心的でない／状況依存の項目。</p>
+</blockquote>
+<ul>
+<li><strong>「終わりありき」で締切間際に動くことを戒める</strong>: 事前にスケジューリングし淡々とこなす。区切りを明確にすると精神的余裕が生まれる。<blockquote>
+<p>「皆さん夏休みの終わりが決まってて、最後に宿題をする人になってる。事前にスケジューリングして淡々とこなす。"今日ここまでやれば何の憂いもなく家に帰って美味しいご飯が食べられる"とポイントを明確に区切って生きないと辛くなる」</p>
+</blockquote>
+</li>
+<li><strong>常に考える（脳みそを停止させない）</strong>: 抽象化と具体化を使いこなし、なぜ？反論はあるか？と自己で繰り返し深掘りする。自分の発言・行動の影響を先まで見越す。</li>
+<li><strong>素直さは成長力の源泉</strong>: 「自分なら」と考えずまず素直に従い攻略法1をマスターする。自分なりの攻略法2はその後。</li>
+<li><strong>「いいからやれ！」</strong>: 個別スキルを意識しがちだが、概ねスキルを身につけるためのベースやマインドができていないことが多い。</li>
+<li><strong>同じテーマを長く深くやり続ける</strong>: 浅く広く触れる学習は身につかない。<blockquote>
+<p>「新しい言語のチュートリアルやってみた、はその場でなんとなく分かった気になるけど残らない。同じものをずっとちゃんとやる方がいい」</p>
+</blockquote>
+</li>
+<li><strong>自分の領域以外も習得する</strong>: 自分のタスクを終わらせた上で他領域を積極的にキャッチアップし、他の人を見て盗む。成長速度を加速させる。</li>
+<li><strong>やらざるを得ない環境に身を置く</strong>: 意思の力で努力するのは大変なので、環境で縛る。迷ったら普段選ばない方を選択する。</li>
+<li><strong>感情で動かない（メリデメで行動）</strong>: 自分が気持ち良くなるだけの注意や文句は言わない。対社内も「ビジネスパートナー」と捉える（→ [[decision-making]]）。</li>
+<li><strong>AI時代は本質理解と言語化が核心スキル</strong>: 開発能力そのものより、相手の意図の本質を速く正しく理解し、成果を組み立て、AIや人に言語化して伝える力（詳細は [[ai-utilization]]）。<blockquote>
+<p>「今後のエンジニアに求められるのは開発能力じゃなくて、人が言ってることの本質を効率よく正しく理解して、成果を品質高く出すための作業を組み立て、言語化してAIや人に伝えること」</p>
+</blockquote>
+</li>
+<li><strong>信頼獲得と世渡り</strong>:</li>
+<li><strong>できないことは適切に「できない」と言う</strong>。その上で、やるための方法を建設的に考え win-win を作る。</li>
+<li><strong>まずはオーバーワークでもバリューを出す</strong>。最初が信頼獲得で一番重要。信頼を得ると発言に重みが出て意見を通しやすい。</li>
+<li><strong>めんどくさい駆け引きはせず正直に言う</strong>。お客さんも社内も正直な方が結果としてやりやすい。</li>
+</ul>
+<h2 id="_4">アンチパターン（清田が嫌うこと）</h2>
+<ul>
+<li>報連相不足、特に「期限間際になって終わらないと言ってくる」</li>
+<li>「気をつけます」「意識します」で終わる改善策</li>
+<li>抽象的な目標で「達成度を測れない」もの</li>
+<li>自分の意見・思い込みで相手の話を遮り、正しく受け取らないこと</li>
+<li>同じ指摘を繰り返し受けても直さないこと</li>
+<li>苦手だからと無意識下で避けて、自分がやりやすいことに流れること</li>
+</ul>
+<h2 id="_5">関連メモリ</h2>
+<ul>
+<li>思考の癖と質問パターン → [[communication-style]]</li>
+<li>フィードバックの書き方 → [[feedback-style]]</li>
+<li>プロジェクト運営の考え方 → [[project-management]]</li>
+<li>人生・心の御し方 → [[life-philosophy]]</li>
+</ul></article></div>
+<footer>このページは <code>work-philosophy.md</code> から自動生成 — <a href="./summary.html">サマリへ戻る</a></footer>
+</body>
+</html>
